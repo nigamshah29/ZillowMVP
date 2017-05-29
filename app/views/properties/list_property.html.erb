@@ -1,0 +1,75 @@
+<nav>
+  <a href="#">Back to Homepage</a>
+  <a href="#">Logout</a>
+  <form class="" action="index.html" method="post">
+    Search: <input type="text" name="search_query" placeholder="Enter city, address, or zip">
+  </form>
+</nav>
+
+<hr>
+
+<h1>List your Property</h1>
+
+<form action="/hold_property_data" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <h4>Location:</h4>
+    Address: <input type="text" name="address"><br><br>
+    City: <input type="text" name="city">
+    State: <%= select_tag "state", options_for_select(us_states) %>
+    Zip: <input type="text" name="zipcode"><br>
+    <hr>
+  <h4>Property Details:</h4>
+    Type:
+    <select name="type">
+      <option value="house">House</option>
+      <option value="condo">Condo</option>
+      <option value="townhouse">Townhouse</option>
+      <option value="apartment">Apartment</option>
+      <option value="mobile_home">Mobile Home</option>
+    </select>
+    <br><br>
+    Year Built: <input type="date" name="year_built"><br><br>
+    Number of Beds:
+    <select name="no_bed">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+    </select>
+    Number of Baths:
+    <select name="no_bath">
+      <option value="1">1</option>
+      <option value="1.5">1.5</option>
+      <option value="2">2</option>
+      <option value="2.5">2.5</option>
+      <option value="3">3</option>
+      <option value="3.5">3.5</option>
+      <option value="4">4</option>
+    </select>
+    <br><br>
+    Garage: <input type="radio" name="garage" value="true">Yes
+            <input type="radio" name="garage" value="false">No <br><br>
+    Parking:
+    <select name="parking">
+      <option value="garage">Garage Parking Available</option>
+      <option value="permit">Permit Parking Available</option>
+      <option value="street">Street Parking Available</option>
+      <option value="none">No Parking Available</option>
+    </select>
+    <hr>
+  <h4>Pricing and Description:</h4>
+    <textarea name="description" rows="8" cols="80" placeholder="Enter in a description"></textarea><br><br>
+    Asking Price: <input type="integer" name="price"><br><br>
+    <hr>
+    <select name="status">
+      <option value="rent">For Rent</option>
+      <option value="sale">For Sale</option>
+      <option value="foreclosed">Foreclosed</option>
+      <option value="new_construction">New Construction</option>
+    </select>
+    Your Phone Number: <input type="text" name="contact_phone">
+    <br><br><br>
+    <input type="submit" name="listing" value="List Property">
+</form>

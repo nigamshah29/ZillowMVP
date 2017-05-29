@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  property: one
+  favorited: false
+  savedsearch_zip: 1
+  savedsearch_no_bed: 1
+  savedsearch_no_bath: 1.5
+  savedsearch_priceMin: 1
+  savedsearch_priceMax: 1
+
+two:
+  user: two
+  property: two
+  favorited: false
+  savedsearch_zip: 1
+  savedsearch_no_bed: 1
+  savedsearch_no_bath: 1.5
+  savedsearch_priceMin: 1
+  savedsearch_priceMax: 1
