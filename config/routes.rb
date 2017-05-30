@@ -1,11 +1,25 @@
 Rails.application.routes.draw do
-  root 'users#index'
+  root 'properties#index'
 
-  post 'p_saveds/save_search' => 'p_saveds#save_search'
+  #Users Routes
 
-  post 'p_saveds/favorite_property' => 'p_saveds#favorite_property'
+  get 'users' => 'users#index'
+
+  get 'users/welcome' => 'users#welcome'
+
+  get 'users/user_profile' => 'users#user_profile'
+
+  post '/register' => 'users#register' #convert to SessionController
+
+  post '/login' => 'users#login' #convert to SessionController
+
+  get '/logout' => 'users#logout' #convert to SessionController
+
+  #Properties Routes
 
   get 'properties/homepage' => 'properties#homepage'
+
+  get 'properties/show' => 'properties#show'
 
   get 'properties/list_property' => 'properties#list_property'
 
@@ -25,15 +39,12 @@ Rails.application.routes.draw do
 
   get 'properties/zestimate' => 'properties#zestimate'
 
-  get 'users/welcome' => 'users#welcome'
+  #P_Saved Routes
 
-  get 'users/user_profile' => 'users#user_profile'
+  post 'p_saveds/save_search' => 'p_saveds#save_search'
 
-  post '/login' => 'users#login' #convert to SessionController
+  post 'p_saveds/favorite_property' => 'p_saveds#favorite_property'
 
-  get '/logout' => 'users#logout' #convert to SessionController
-
-  post '/register' => 'users#register' #convert to SessionController
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

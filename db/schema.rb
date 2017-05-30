@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20170530171835) do
     t.string "state"
     t.string "address"
     t.integer "zipcode"
-    t.date "date_listed"
     t.datetime "year_built"
     t.float "longitude"
     t.float "latitude"
