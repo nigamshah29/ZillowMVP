@@ -1,6 +1,7 @@
 <nav>
-  <a href="#">Back to Homepage</a>
-  <a href="#">Logout</a>
+  <a href="/properties/homepage">Back to Homepage</a>
+  Signed In: <%=current_user.first_name%><br>
+  <a href="/logout"><button>Logout</button></a>
   <form class="" action="index.html" method="post">
     Search: <input type="text" name="search_query" placeholder="Enter city, address, or zip">
   </form>
@@ -10,7 +11,7 @@
 
 <h1>Edit your Property</h1>
 
-<form action="/hold_property_data" method="post">
+<form action="/properties/hold_data" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <h4>Location:</h4>
     Address: <input type="text" name="property[address]" placeholder="<%=session[:address]%>"><br><br>

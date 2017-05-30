@@ -21,17 +21,16 @@ class PropertiesController < ApplicationController
     session[:price] = params[:price]
     session[:status] = params[:status]
     session[:contact_phone] = params[:contact_phone]
-    redirect_to "/confirm_property"
+    redirect_to "/properties/confirm_property"
   end
 
   def confirm_property
-    # @property = Property.new(property_params)
     @address = params[:address]
     @city = session[:city]
     @state = session[:state]
     @zipcode = session[:zipcode]
     @type = session[:type]
-    @year_built= session[:year_built]
+    @year_built = session[:year_built]
     @no_bed = session[:no_bed]
     @no_bath = session[:no_bath]
     @garage = session[:garage]
@@ -39,30 +38,32 @@ class PropertiesController < ApplicationController
     @description = session[:description]
     @price = session[:price]
     @status = session[:status]
-    # @contact_firstname = current_user.first_name
-    # @contact_lastname = current_user.last_name
-    # @contact_email = current_user.email
+    @contact_name = current_user.first_name + " " + current_user.last_name
+    @contact_email = current_user.email
     @contact_phone = session[:contact_phone]
-    @state_taxes = helpers.state_taxes
-    puts "----------------------------------"
-    puts @state_taxes
-    puts "----------------------------------"
-    h = Hash.new {|hash, key| hash[key] = []}
-    @state_taxes.each {|e| h[e[0]] << e[1]}
-    @tax = h[@state]
+    # @state_taxes = helpers.state_taxes
+    # puts "----------------------------------"
+    # puts @state_taxes
+    # puts "----------------------------------"
+    # h = Hash.new {|hash, key| hash[key] = []}
+    # @state_taxes.each {|e| h[e[0]] << e[1]}
+    # @tax = h[@state]
+    @longitude =
+    @latitude =
     render "confirm_property"
   end
 
   def update_listing
   end
 
-  def post_property
+  def create
+    @property = Property.new(address: @address,city: @city, state: @state, zipcode: @zipcode, type: @type, year_built: @year_built, no_bed: @no_bed, no_bath: @no_bath, garage: @garage, parking: @parking, description: @description, price: @price, status: @status, tax: @tax, contact_name: @contact_name, contact_email: @contact_email, contact_phone: @contact_phone)
     if @property.save
       puts "Property successfully posted!"
-      redirect_to "/homepage"
+      redirect_to "/properties/homepage"
     else
       flash[:errors] = @property.errors.full_messages
-      redirect_to "/confirm_property"
+      redirect_to "/properties/confirm_property"
     end
   end
 
@@ -72,10 +73,10 @@ class PropertiesController < ApplicationController
   def contact_seller
   end
 
-  def edit_listing
+  def edit
   end
 
-  def update_listing
+  def update
   end
 
   def zestimate

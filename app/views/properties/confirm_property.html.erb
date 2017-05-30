@@ -1,6 +1,7 @@
 <nav>
   <a href="#">Back to Homepage</a>
-  <a href="#">Logout</a>
+  Signed In: <%=current_user.first_name%><br>
+  <a href="/logout"><button>Logout</button></a>
   <form class="" action="index.html" method="post">
     Search: <input type="text" name="search_query" placeholder="Enter city, address, or zip">
   </form>
@@ -10,10 +11,10 @@
 
 <h1>Confirm your Listing</h1>
 
-<form action="/hold_property_data" method="post">
+<form action="/properties/create" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <h4>Location:</h4>
-    Address: <b><%=@address%></b>
+    Address: <b><%=@address%></b><br><br>
     City: <b><%=@city%></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     State: <b><%=@state%></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     Zip: <b><%=@zipcode%></b><br><br>
@@ -23,15 +24,15 @@
     Year Built: <b><%=@year_built%></b><br><br>
     Number of Beds: <b><%=@no_bed%></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     Number of Baths: <b><%=@no_bath%></b><br><br>
-    Garage: <% if @garage %> Yes
-            <% else %> No
+    Garage: <% if @garage %> <b>Yes</b>
+            <% else %> <b>No</b>
             <% end %>
     <br><br>
     Parking: <b><%=@parking%></b><br><br>
     Status: <b><%=@status%></b><br><br>
   <h4>Pricing and Description:</h4>
     Description: <b><%=@description%></b><br><br>
-    Asking Price: <b><%=@price%></b><br><br>
+    Asking Price: <b>$<%=@price%></b><br><br>
     Property Tax:<b><%=@tax%></b><br><br>
     <hr>
   <h4>Lister's Contact Information</h4>
@@ -42,4 +43,4 @@
     <input type="submit" name="post_listing" value="Post Listing!">
 </form>
 
-<a href="/edit_listing">Edit Listing</a>
+<a href="properties/edit">Edit Listing</a>

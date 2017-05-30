@@ -1,37 +1,39 @@
 Rails.application.routes.draw do
   root 'users#index'
 
-  post 'save_search' => 'p_saveds#save_search'
+  post 'p_saveds/save_search' => 'p_saveds#save_search'
 
-  post 'favorite_property' => 'p_saveds#favorite_property'
+  post 'p_saveds/favorite_property' => 'p_saveds#favorite_property'
 
-  get 'homepage' => 'properties#homepage'
+  get 'properties/homepage' => 'properties#homepage'
 
-  get 'list_property' => 'properties#list_property'
+  get 'properties/list_property' => 'properties#list_property'
 
-  post 'hold_property_data' => 'properties#hold_property_data'
+  post 'properties/hold_data' => 'properties#hold_property_data'
 
-  get 'confirm_property' => 'properties#confirm_property'
+  get 'properties/confirm_property' => 'properties#confirm_property'
 
-  post 'search' => 'properties#search'
+  post 'properties/create' => 'properties#create'
 
-  get 'contact_seller' => 'properties#contact_seller'
+  post 'properties/search' => 'properties#search'
 
-  get 'edit_listing' => 'properties#edit_listing'
+  get 'properties/contact_seller' => 'properties#contact_seller'
 
-  patch 'update_listing' => 'properties#update_listing'
+  get 'properties/edit' => 'properties#edit'
 
-  get 'zestimate' => 'properties#zestimate'
+  patch 'properties/:id/update' => 'properties#update'
 
-  get 'welcome' => 'users#welcome'
+  get 'properties/zestimate' => 'properties#zestimate'
 
-  get 'my_listings' => 'users#my_listings'
+  get 'users/welcome' => 'users#welcome'
 
-  post 'login' => 'users#login'
+  get 'users/user_profile' => 'users#user_profile'
 
-  get 'logout' => 'users#logout'
+  post '/login' => 'users#login' #convert to SessionController
 
-  post 'register' => 'users#register'
+  get '/logout' => 'users#logout' #convert to SessionController
+
+  post '/register' => 'users#register' #convert to SessionController
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
