@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     user = User.create(first_name:params[:first_name], last_name:params[:last_name], email:params[:email], password:params[:password], password_confirmation:params[:password_confirmation])
     if user.valid?
       user.save
-      session[:name] = params[:name]
+      session[:id] = user.id
       flash[:message] = ["user created"]
       redirect_to '/users/user_profile'
     else

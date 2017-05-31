@@ -1,6 +1,6 @@
 <nav>
-  <a href="#">Back to Homepage</a>
-  Signed In: <%=current_user.first_name%><br>
+  <a href="#">Back to Homepage</a><br>
+  Signed In: <%=current_user.first_name%>
   <a href="/logout"><button>Logout</button></a>
   <form class="" action="index.html" method="post">
     Search: <input type="text" name="search_query" placeholder="Enter city, address, or zip">
@@ -9,18 +9,16 @@
 
 <hr>
 
-<h1>Confirm your Listing</h1>
+<h1>Confirm Your Listing</h1>
 
-<form action="/properties/create" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <h4>Location:</h4>
+  <h3>Location:</h3>
     Address: <b><%=@address%></b><br><br>
     City: <b><%=@city%></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     State: <b><%=@state%></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     Zip: <b><%=@zipcode%></b><br><br>
     <hr>
-  <h4>Property Details:</h4>
-    Type: <b><%=@type%></b><br><br>
+  <h3>Property Details:</h3>
+    Type: <b><%=@building_type%></b><br><br>
     Year Built: <b><%=@year_built%></b><br><br>
     Number of Beds: <b><%=@no_bed%></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     Number of Baths: <b><%=@no_bath%></b><br><br>
@@ -30,17 +28,17 @@
     <br><br>
     Parking: <b><%=@parking%></b><br><br>
     Status: <b><%=@status%></b><br><br>
-  <h4>Pricing and Description:</h4>
+  <h3>Pricing and Description:</h3>
     Description: <b><%=@description%></b><br><br>
     Asking Price: <b>$<%=@price%></b><br><br>
-    Property Tax:<b><%=@tax%></b><br><br>
+    Property Tax: <b>$<%= "%.02f" % @property_tax%> (<%=@tax%>%)</b><br><br>
     <hr>
-  <h4>Lister's Contact Information</h4>
-    Name: <b><%=@contact_firstname%> <%=@contact_lastname%></b><br><br>
+  <h3>Lister's Contact Information:</h3>
+    Name: <b><%=@contact_name%></b><br><br>
     Email: <b><%=@contact_email%></b><br><br>
     Phone: <b><%=@contact_phone%></b>
     <hr>
-    <input type="submit" name="post_listing" value="Post Listing!">
-</form>
 
-<a href="properties/edit">Edit Listing</a>
+<%= link_to "Post Listing!", '/properties/create', method: :post %>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="/properties/edit_listing">Edit Listing</a>
