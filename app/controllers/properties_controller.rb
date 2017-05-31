@@ -3,6 +3,9 @@ class PropertiesController < ApplicationController
   def homepage
   end
 
+  def show
+  end
+
   def list_property
   end
 

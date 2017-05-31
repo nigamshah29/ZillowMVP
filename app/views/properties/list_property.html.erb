@@ -1,11 +1,7 @@
-<nav>
-  <a href="/properties/homepage">Back to Homepage</a><br>
-  Signed In: <%=current_user.first_name%>
-  <a href="/logout"><button>Logout</button></a>
-  <form class="" action="index.html" method="post">
-    Search: <input type="text" name="search_query" placeholder="Enter city, address, or zip">
-  </form>
-</nav>
+<%= render partial: 'shared/navbar' %>
+<p>
+  Signed In: <%=current_user.first_name%><br>
+</p>
 
 <hr>
 
