@@ -2,7 +2,7 @@ class CreateProperties < ActiveRecord::Migration[5.1]
   def change
     create_table :properties do |t|
       t.text :description
-      t.string :type
+      t.string :building_type
       t.integer :price
       t.string :city
       t.string :state

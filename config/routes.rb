@@ -27,15 +27,25 @@ Rails.application.routes.draw do
 
   get 'properties/confirm_property' => 'properties#confirm_property'
 
+  get 'properties' => 'properties#properties_list'
+
   post 'properties/create' => 'properties#create'
 
   post 'properties/search' => 'properties#search'
 
   get 'properties/contact_seller' => 'properties#contact_seller'
 
-  get 'properties/edit' => 'properties#edit'
+  get 'properties/edit_listing' => 'properties#edit_listing'
 
-  patch 'properties/:id/update' => 'properties#update'
+  get 'properties/:id/edit_confirmed' => 'properties#edit_confirmed'
+
+  patch 'properties/:id/update_confirmed' => 'properties#update_confirmed'
+
+  get 'properties/new_properties' => 'properties#new_properties'
+
+  get 'properties/popular_properties' => 'properties#popular_properties'
+
+  get 'properties/rent_properties' => 'properties#rent_properties'
 
   get 'properties/zestimate' => 'properties#zestimate'
 
