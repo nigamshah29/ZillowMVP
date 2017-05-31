@@ -16,7 +16,13 @@
       <ul class="nav navbar-nav">
         <li><a href="#">Buy <span class="sr-only">(current)</span></a></li>
         <li><a href="#">Rent</a></li>
-        <li><a href="#">Sell</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sell <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/properties/list_property">Create a Listing</a></li>
+            <li><a href="#">Claim a Listed Home</a></li>
+          </ul>
+        </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -38,7 +44,7 @@
           <ul class="dropdown-menu">
             <li class="SHdropdown_titles"><a href="#">My Homes</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Hearted Homes</a></li>
+            <li><a href="/users/user_profile">Hearted Homes</a></li>
             <li><a href="#">Claim my Home</a></li>
             <li role="separator" class="divider"></li>
             <li class="SHdropdown_titles"><a href="#">My Account</a></li>

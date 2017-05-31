@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
-  root 'properties#index'
+  root 'properties#homepage'
 
   #Users Routes
 
-  get 'users' => 'users#index'
-
-  get 'users/welcome' => 'users#welcome'
+  get 'users' => 'users#index' #delete?
 
   get 'users/user_profile' => 'users#user_profile'
 
   post '/register' => 'users#register' #convert to SessionController
 
+  get 'users/welcome' => 'users#welcome'
+
   post '/login' => 'users#login' #convert to SessionController
 
-  get '/logout' => 'users#logout' #convert to SessionController
+  get '/logout' => 'users#logout' #convert to SessionController 
 
   #Properties Routes
 
