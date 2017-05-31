@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :prop_images
+
   root 'properties#homepage'
 
   #Users Routes
@@ -13,7 +15,7 @@ Rails.application.routes.draw do
 
   post '/login' => 'users#login' #convert to SessionController
 
-  get '/logout' => 'users#logout' #convert to SessionController 
+  get '/logout' => 'users#logout' #convert to SessionController
 
   #Properties Routes
 
@@ -45,6 +47,16 @@ Rails.application.routes.draw do
 
   post 'p_saveds/favorite_property' => 'p_saveds#favorite_property'
 
+  get 'prop_images/index'
 
+  get 'prop_images/new'
+
+  get 'prop_images/edit'
+
+  get 'prop_images/create'
+
+  get 'prop_images/show'
+
+  get 'prop_images/update'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
