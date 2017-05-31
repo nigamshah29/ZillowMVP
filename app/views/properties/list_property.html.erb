@@ -1,6 +1,6 @@
 <nav>
-  <a href="/properties/homepage">Back to Homepage</a>
-  Signed In: <%=current_user.first_name%><br>
+  <a href="/properties/homepage">Back to Homepage</a><br>
+  Signed In: <%=current_user.first_name%>
   <a href="/logout"><button>Logout</button></a>
   <form class="" action="index.html" method="post">
     Search: <input type="text" name="search_query" placeholder="Enter city, address, or zip">
@@ -21,7 +21,7 @@
     <hr>
   <h4>Property Details:</h4>
     Type:
-    <select name="type">
+    <select name="building_type">
       <option value="House">House</option>
       <option value="Condo">Condo</option>
       <option value="Townhouse">Townhouse</option>

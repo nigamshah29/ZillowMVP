@@ -29,13 +29,12 @@ ActiveRecord::Schema.define(version: 20170530171835) do
 
   create_table "properties", force: :cascade do |t|
     t.text "description"
-    t.string "type"
+    t.string "building_type"
     t.integer "price"
     t.string "city"
     t.string "state"
     t.string "address"
     t.integer "zipcode"
-    t.date "date_listed"
     t.datetime "year_built"
     t.float "longitude"
     t.float "latitude"

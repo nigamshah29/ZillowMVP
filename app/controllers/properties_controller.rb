@@ -11,7 +11,7 @@ class PropertiesController < ApplicationController
     session[:city] = params[:city]
     session[:state] = params[:state]
     session[:zipcode] = params[:zipcode]
-    session[:type] = params[:type]
+    session[:building_type] = params[:building_type]
     session[:year_built] = params[:year_built]
     session[:no_bed] = params[:no_bed]
     session[:no_bath] = params[:no_bath]
@@ -21,16 +21,18 @@ class PropertiesController < ApplicationController
     session[:price] = params[:price]
     session[:status] = params[:status]
     session[:contact_phone] = params[:contact_phone]
+    # render json: params
     redirect_to "/properties/confirm_property"
   end
 
   def confirm_property
-    @address = params[:address]
+    @address = session[:address]
     @city = session[:city]
     @state = session[:state]
     @zipcode = session[:zipcode]
-    @type = session[:type]
-    @year_built = session[:year_built]
+    @building_type = session[:building_type]
+    year_built = session[:year_built].to_datetime
+    @year_built = year_built.strftime('%B %d, %Y')
     @no_bed = session[:no_bed]
     @no_bath = session[:no_bath]
     @garage = session[:garage]
@@ -41,31 +43,70 @@ class PropertiesController < ApplicationController
     @contact_name = current_user.first_name + " " + current_user.last_name
     @contact_email = current_user.email
     @contact_phone = session[:contact_phone]
-    # @state_taxes = helpers.state_taxes
-    # puts "----------------------------------"
-    # puts @state_taxes
-    # puts "----------------------------------"
-    # h = Hash.new {|hash, key| hash[key] = []}
-    # @state_taxes.each {|e| h[e[0]] << e[1]}
-    # @tax = h[@state]
-    @longitude =
-    @latitude =
+    state_taxes = helpers.state_taxes
+    h = Hash.new {|hash, key| hash[key] = []}
+    state_taxes.each {|e| h[e[0]] << e[1]}
+    @tax = (h[@state][0] * 100).round(2) #as a percentage
+    session[:tax] = @tax
+    @property_tax = (h[@state][0] * @price.to_f).round(2)
+    # @longitude =
+    # @latitude =
     render "confirm_property"
   end
 
-  def update_listing
+  def update_confirmed
   end
 
   def create
-    @property = Property.new(address: @address,city: @city, state: @state, zipcode: @zipcode, type: @type, year_built: @year_built, no_bed: @no_bed, no_bath: @no_bath, garage: @garage, parking: @parking, description: @description, price: @price, status: @status, tax: @tax, contact_name: @contact_name, contact_email: @contact_email, contact_phone: @contact_phone)
-    if @property.save
+    @p = Property.new
+    @p.address = session[:address]
+    @p.city = session[:city]
+    @p.state = session[:state]
+    @p.zipcode = session[:zipcode]
+    @p.building_type = session[:building_type]
+    year_built = session[:year_built].to_datetime
+    @p.year_built = year_built.strftime('%B %d, %Y')
+    @p.no_bed = session[:no_bed]
+    @p.no_bath = session[:no_bath]
+    @p.garage = session[:garage]
+    @p.parking = session[:parking]
+    @p.description = session[:description]
+    @p.price = session[:price]
+    @p.status = session[:status]
+    @p.contact_name = current_user.first_name + " " + current_user.last_name
+    @p.contact_email = current_user.email
+    @p.contact_phone = session[:contact_phone]
+    @p.tax = session[:tax]
+    if @p.save
+      puts "***********************************"
       puts "Property successfully posted!"
+      puts "***********************************"
       redirect_to "/properties/homepage"
     else
-      flash[:errors] = @property.errors.full_messages
+      flash[:errors] = @p.errors.full_messages
       redirect_to "/properties/confirm_property"
     end
   end
+
+  def properties_list
+    @new_properties = Property.order('created_at DESC')
+  end
+
+  def new_properties
+    redirect_to '/properties'
+  end
+
+  # def popular_properties
+  #   @popular_properties = Property.all  # TODO: order
+  #   # @new_properties = Property.order('created_at DESC')
+  #   redirect_to '/properties'
+  # end
+  #
+  # def rent_properties
+  #   @rent_properties = Property.all  # TODO: order
+  #   # @rent_properties = Property.order('price DESC')
+  #   redirect_to '/properties'
+  # end
 
   def search
   end
@@ -82,8 +123,27 @@ class PropertiesController < ApplicationController
   def zestimate
   end
 
-  # private
-  #   def property_params
-  #     params.require(:property).permit(:description, :type, :price, :city, :state, :zipcode, :address, :year_built, :status, :no_bed, :no_bath, :garage, :parking, :contact_phone)
-  #   end
+  private
+    def property_params
+      params.require(:property).require(
+        :description,
+        :building_type,
+        :price,
+        :city,
+        :state,
+        :address,
+        :zipcode,
+        :year_built,
+        :status,
+        :no_bed,
+        :no_bath,
+        :garage,
+        :parking,
+        :tax,
+        :contact_name,
+        :contact_email,
+        :contact_phone
+      )
+    end
+
 end
