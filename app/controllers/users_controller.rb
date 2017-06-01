@@ -45,11 +45,51 @@ class UsersController < ApplicationController
   end
 
   def user_profile
+    @fav_properties = Property.all # NOTE: Need to add query
+    @listed_properties = Property.where(contact_email: current_user.email)
+  end
+
+  def my_listing
+    @property = Property.find(params[:p_id])
+  end
+
+  def change_listing
+    @p = Property.find(params[:p_id])
+  end
+
+  def update_listing
+    @p = Property.find(params[:p_id])
+    if @p.update(property_params)
+      redirect_to "/users/#{@p.id}/my_listing"
+    else
+      flash[:errors] = @user.errors.full_messages
+      redirect_to "/users/#{@p.id}/change_listing"
+    end
   end
 
   def logout
     reset_session
     redirect_to "/users/welcome"
   end
+
+
+  private
+    def property_params
+      params.require(:property).permit(
+        :description,
+        :building_type,
+        :price,
+        :city,
+        :state,
+        :address,
+        :zipcode,
+        :year_built,
+        :status,
+        :no_bed,
+        :no_bath,
+        :garage,
+        :parking
+      )
+    end
 
 end

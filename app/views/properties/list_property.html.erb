@@ -6,6 +6,7 @@
 <hr>
 
 <h1>List your Property</h1>
+<hr>
 
 <form action="/properties/hold_data" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
@@ -68,7 +69,5 @@
     </select>
     Your Phone Number: <input type="text" name="contact_phone">
     <br><br><br>
-    <%= link_to 'Add Property Image', new_prop_image_path %>
     <input type="submit" name="listing" value="List Property">
-
 </form>

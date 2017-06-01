@@ -1,18 +1,19 @@
 <%= render partial: 'shared/navbar' %>
 
 <h1>Edit your Listing</h1>
-
-<form action="/properties/hold_data" method="post">
+<hr>
+<form action="/users/<%=@p.id%>/update_listing" method="post">
+  <input type="hidden" name="_method" value="patch">
   <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
   <h3>Location:</h3>
-    Address: <input type="text" name="address" value="<%=session[:address]%>"><br><br>
-    City: <input type="text" name="city" value="<%=session[:city]%>">
-    State: <%= select_tag "state", options_for_select(us_states) %>
-    Zip: <input type="text" name="zipcode" value="<%=session[:zipcode]%>"><br>
+    Address: <input type="text" name="property[address]" value="<%=@p.address%>"><br><br>
+    City: <input type="text" name="property[city]" value="<%=@p.city%>">
+    State: <%= select_tag "property[state]", options_for_select(us_states) %>
+    Zip: <input type="text" name="property[zipcode]" value="<%=@p.zipcode%>"><br>
     <hr>
   <h3>Property Details:</h3>
     Type:
-    <select name="building_type">
+    <select name="property[building_type]">
       <option value="House">House</option>
       <option value="Condo">Condo</option>
       <option value="Townhouse">Townhouse</option>
@@ -20,9 +21,9 @@
       <option value="Mobile Home">Mobile Home</option>
     </select>
     <br><br>
-    Year Built: <input type="date" name="year_built" value="<%=session[:year_built]%>"><br><br>
+    Year Built: <input type="date" name="property[year_built]" value="<%=@p.year_built%>"><br><br>
     Number of Beds:
-    <select name="no_bed">
+    <select name="property[no_bed]">
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -30,10 +31,10 @@
       <option value="5">5</option>
       <option value="6">6</option>
     </select>
-    (<%=session[:no_bed]%>)
+    (<%=@p.no_bed%>)
     &nbsp;&nbsp;&nbsp;
     Number of Baths:
-    <select name="no_bath">
+    <select name="property[no_bath]">
       <option value="1">1</option>
       <option value="1.5">1.5</option>
       <option value="2">2</option>
@@ -42,12 +43,12 @@
       <option value="3.5">3.5</option>
       <option value="4">4</option>
     </select>
-    (<%=session[:no_bath]%>)
+    (<%=@p.no_bath%>)
     <br><br>
-    Garage: <input type="radio" name="garage" value="true">Yes
-            <input type="radio" name="garage" value="false">No <br><br>
+    Garage: <input type="radio" name="property[garage]" value="true">Yes
+            <input type="radio" name="property[garage]" value="false">No <br><br>
     Parking:
-    <select name="parking">
+    <select name="property[parking]">
       <option value="Garage Parking Available">Garage Parking Available</option>
       <option value="Permit Parking Available">Permit Parking Available</option>
       <option value="Street Parking Available">Street Parking Available</option>
@@ -55,18 +56,18 @@
     </select>
     <hr>
   <h3>Pricing and Description:</h3>
-    <textarea name="description" rows="8" cols="80" placeholder="<%=session[:description]%>"></textarea><br><br>
-    Asking Price: <input type="integer" name="price" value="<%=session[:price]%>"><br><br>
+    <textarea name="property[description]" rows="8" cols="80" placeholder="<%=@p.description%>"></textarea><br><br>
+    Asking Price: <input type="integer" name="property[price]" value="<%=@p.price%>"><br><br>
     <hr>
-    <select name="status">
+    <select name="property[status]">
       <option value="For Rent">For Rent</option>
       <option value="For Sale">For Sale</option>
       <option value="Foreclosed">Foreclosed</option>
       <option value="New Construction">New Construction</option>
     </select>
-    Your Phone Number: <input type="text" name="contact_phone" value="<%=session[:contact_phone]%>">
+    Your Phone Number: <input type="text" name="property[contact_phone]" value="<%=@p.contact_phone%>">
     <br><br><br>
-    <input type="submit" name="listing" value="Update Property">
+    <input type="submit" value="Update Property">
 </form>
 <br><br>
-<a href="/properties/confirm_property">Back</a>
+<a href="/users/<%=@p.id%>/my_listing">Back to Listing</a>
