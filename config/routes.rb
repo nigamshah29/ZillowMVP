@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   get 'properties/homepage' => 'properties#homepage'
 
+  get 'properties/:id/detail_page' => 'properties#detail_page'
+
   get 'properties/show' => 'properties#show'
 
   get 'properties/list_property' => 'properties#list_property'

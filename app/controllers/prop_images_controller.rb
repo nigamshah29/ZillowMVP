@@ -15,7 +15,7 @@ class PropImagesController < ApplicationController
 
   def create
     @prop_image=PropImage.new(prop_image_params)
-    # @prop_image = Property.where(property_id : property.id)
+    @prop_image = Property.prop_image(1)
     if @prop_image.save
       redirect_to prop_images_path
     else
