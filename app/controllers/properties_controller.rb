@@ -1,11 +1,11 @@
 class PropertiesController < ApplicationController
 
   def homepage
-    @p = Property.find(1)
+    # @p = Property.find()
   end
 
   def detail_page
-    @p = Property.find(1)
+    # @p = Property.find()
     @prop_images=PropImage.where(property_id:params[:id])
   end
 
