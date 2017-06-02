@@ -3,32 +3,73 @@
 </nav>
 <hr>
 <h3>Welcome!</h3>
-
-<h3>Register</h3>
-<form action="/register" method='post'>
-  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
-<table>
-  <tr><td>First Name:</td><td><input type="text" name="first_name"></td></tr>
-  <tr><td>Last Name:</td><td><input type="text" name="last_name"></td></tr>
-  <tr><td>Email:</td><td><input type="text" name="email"></td></tr>
-  <tr><td>Password:</td><td><input type="password" name="password"></td></tr>
-  <tr><td>Confirm Password:</td><td><input type="password" name="password_confirmation"></td></tr>
-  <tr><td><input type="submit" value="Register"></td></tr>
-</table>
-</form>
-
-<% if flash[:message] %>
-  <% flash[:message].each do |msg| %>
-    <h3 style="color:red;"><i><%=msg%></h3></i>
-  <%end%>
-<%end%>
-
-<h3>Login</h3>
-<form action="/login" method="post">
-  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
-<table>
-  <tr><td>Email:</td><td><input type="text" name="email"></td></tr>
-  <tr><td>Password:</td><td><input type="password" name="password"></td></tr>
-  <tr><td><input type="submit" value="Login"></td></tr>
-</table>
-</form>
+<center>
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <div class="" id="loginModal">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>Have an Account?</h3>
+              </div>
+              <div class="modal-body">
+               <div class="well">
+                 <ul class="nav nav-tabs">
+                   <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
+                   <li><a href="#create" data-toggle="tab">Create Account</a></li>
+                 </ul>
+                 <div id="myTabContent" class="tab-content">
+                  <div class="tab-pane active in" id="login">
+                    <form class="form-horizontal" action="/login" method="POST">
+                      <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+                      <fieldset>
+                        <div id="legend">
+                          <legend class="">Login</legend>
+                        </div>
+                        <div class="control-group">
+                     <!-- Username -->
+                     <label class="control-label"  for="email">Email</label>
+                     <div class="controls">
+                       <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+                     </div>
+                   </div>
+                   <div class="control-group">
+                          <!-- Password-->
+                          <label class="control-label" for="password">Password</label>
+                          <div class="controls">
+                            <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+                          </div>
+                        </div>
+                        <div class="control-group">
+                    <!-- Button -->
+                    <div class="controls"><br><br>
+                      <button class="btn btn-success">Login</button>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+           </div>
+            <div class="tab-pane fade" id="create">
+              <form id="tab" action="/register" method='post'>
+                <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+                <label>First Name</label><br>
+                <input type="text" value=""  name="first_name" class="input-xlarge"><br>
+                <label>Last Name</label><br>
+                <input type="text" value="" name="last_name" class="input-xlarge"><br>
+                <label>Email</label><br>
+                <input type="text" value="" class="input-xlarge"><br>
+                <label>Password</label><br>
+                <input type="password" name="password"class="input-xlarge"</input><br>
+                <label>Confirm Password</label><br>
+                <input type="password" name="password_confirmation"  class="input-xlarge">
+                <div><br><br>
+                  <button type="submit"class="btn btn-primary">Create Account</button>
+                </div>
+              </form>
+            </div>
+        </div>
+      </div>
+</div>
+</div>
+</div>
+</center>
