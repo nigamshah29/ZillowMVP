@@ -1,37 +1,40 @@
 <%= render partial: 'shared/navbar' %>
-
-<h3>Welcome, <%=current_user.first_name%>!</h3>
-
-<center>
-  <h3>Here are your favorite properties!</h3><br><br>
-
-  <% @fav_properties.each do |p| %>
-    <a href="/properties/<%=p.id%>/detail_page"><%=p%></a>
-  <% end %>
-
-  <div id="thumbs">
-    <a id="single_image1" href="#"><img src="http://dummyimage.com/300x300/444/fff" alt=""/></a>
-    <a id="single_image3" href="#"><img src="http://dummyimage.com/300x300/444/fff" alt=""/></a>
-    <a id="single_image2" href="#"><img src="<%= @prop_image %>" alt=""/></a>
-    <span class="stretch"></span>
-  </div>​
-
-  <h3>Here are the properties you are selling!</h3><br><br>
+<div class="container">
 
 
+  <h3>Welcome, <%=current_user.first_name%>!</h3>
 
-  <div id="thumbs">
-    <% @listed_properties.each do |p| %>
-      <a href="/users/<%=p.id%>/my_listing">
+  <center>
+    <h3>Here are your favorite properties!</h3><br><br>
 
-        <%@prop_images.each do |image|%>
-          <%=image_tag image.image%>
-        <%end %>
-
+    <% @fav_properties.each do |p| %>
+      <a href="/properties/<%=p.id%>/detail_page"><%=p%></a>
     <% end %>
 
-    <span class="stretch"></span>
-  </div>​
-</center>
+    <div id="thumbs">
+      <a id="single_image1" href="#"><img src="http://dummyimage.com/300x300/444/fff" alt=""/></a>
+      <a id="single_image3" href="#"><img src="http://dummyimage.com/300x300/444/fff" alt=""/></a>
+      <a id="single_image2" href="#"><img src="<%= @prop_image %>" alt=""/></a>
+      <span class="stretch"></span>
+    </div>​
 
-<br><br>
+    <h3>Here are the properties you are selling!</h3><br><br>
+
+
+
+    <div id="thumbs">
+      <% @listed_properties.each do |p| %>
+        <a href="/users/<%=p.id%>/my_listing">
+
+          <%@prop_images.each do |image|%>
+            <%=image_tag image.image%>
+          <%end %>
+
+      <% end %>
+
+      <span class="stretch"></span>
+    </div>​
+  </center>
+
+  <br><br>
+</div>

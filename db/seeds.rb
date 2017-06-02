@@ -10,8 +10,10 @@
   User.create(first_name:"Mark", last_name:"Lehn", email:"mark@gmail.com", password:"abcd", password_confirmation:"abcd")
   User.create(first_name:"David", last_name:"Pina", email:"pina@gmail.com", password:"abcd", password_confirmation:"abcd")
 
-  Property.create(address:"7415 N. Fairfield", city:"Chicago", state:"Illinois", zipcode:60645, building_type:"House", year_built:1992-02-02, status:"For Sale", contact_name:"Nigam Shah", contact_email:"nigam129@gmail.com")
-  Property.create(address:"909 W. Logan", city:"Los Angeles", state:"California", zipcode:90034, building_type:"Condo", year_built:1993-22-10, status:"For Rent", contact_name:"Rogelio", contact_email:"devcodus@gmail.com")
+  p = Property.new(description:"great place to live", building_type:"House", price:99922, address:"44 Shirley Ave. West Chicago, IL ", zipcode:60185, year_built:"2017-06-02 05:13:56", status:"For Sale", garage:true, no_bed:2, no_bath:2.5, parking:"Street Parking Available", tax:1.5, contact_name:"Rogelio", contact_email:"devcodus@gmail.com", contact_phone:"773-112-4537")
+    p.state = "Illinois"
+    p.city = "Chicago"
+    p.save
 
   Favorite.create(property_id:1,user_id:1)
   Favorite.create(property_id:2,user_id:1)

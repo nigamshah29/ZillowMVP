@@ -2,6 +2,7 @@ class PropertiesController < ApplicationController
 
   def homepage
     # @p = Property.find(1)
+    # @latest = Property.last(4).order("id desc")
   end
 
   def detail_page
@@ -18,7 +19,7 @@ class PropertiesController < ApplicationController
 
   def favorite
     @fav = Favorite.create(property_id:params[:id], user_id:current_user.id)
-    redirect_to "/"
+    redirect_to "/users/user_profile"
   end
 
   def list_property
