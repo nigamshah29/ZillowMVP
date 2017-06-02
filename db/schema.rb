@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601230751) do
+ActiveRecord::Schema.define(version: 20170602000112) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "property_id"
@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 20170601230751) do
 
   create_table "prop_images", force: :cascade do |t|
     t.string "title"
-    t.text "body"
     t.string "image"
     t.integer "property_id"
     t.datetime "created_at", null: false

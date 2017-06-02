@@ -20,7 +20,7 @@ class CreateProperties < ActiveRecord::Migration[5.1]
       t.float :tax
       t.string :contact_name
       t.string :contact_email
-      t.string :contact_phone
+      t.string :contact_phone      
 
       t.timestamps
     end

@@ -1,0 +1,13 @@
+<%= render partial: 'shared/navbar' %>
+
+<h1>My Account Details</h1>
+
+<b>First Name:</b> <%=current_user.first_name%>
+<br><br>
+<b>Last Name:</b> <%=current_user.last_name%>
+<br><br>
+<b>Email:</b> <%=current_user.email%>
+<br><br>
+<a href="/change_password">Change Password</a>
+<hr>
+<a href="/user_profile">Back</a>

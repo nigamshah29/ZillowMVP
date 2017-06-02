@@ -1,0 +1,40 @@
+<%= render partial: 'shared/navbar' %>
+
+<h1>My Listing #<%=@property.id%></h1>
+<hr>
+<h3>Location:</h3>
+  Address: <b><%=@property.address%></b><br><br>
+  City: <b><%=@property.city%></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  State: <b><%=@property.state%></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Zip: <b><%=@property.zipcode%></b><br><br>
+  <hr>
+<h3>Property Details:</h3>
+  Type: <b><%=@property.building_type%></b><br><br>
+  Year Built: <b><%=@property.year_built.strftime('%B %d, %Y')%></b><br><br>
+  Number of Beds: <b><%=@property.no_bed%></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Number of Baths: <b><%=@property.no_bath%></b><br><br>
+  Garage: <% if @property.garage %> <b>Yes</b>
+          <% else %> <b>No</b>
+          <% end %>
+  <br><br>
+  Parking: <b><%=@property.parking%></b><br><br>
+  Status: <b><%=@property.status%></b><br><br>
+<h3>Pricing and Description:</h3>
+  Description:
+    <% if @property.description %>
+      <b><i><%=@property.description%></i></b>
+    <% else %>
+      <i>none</i>
+    <% end %>
+  <br><br>
+  Asking Price: <b>$<%=@property.price%></b><br><br>
+  Property Tax: <b>$<%= "%.02f" % (@property.tax * @property.price)%> (<%=@property.tax%>%)</b><br><br>
+  <hr>
+<h3>Lister's Contact Information:</h3>
+  Name: <b><%=@property.contact_name%></b><br><br>
+  Email: <b><%=@property.contact_email%></b><br><br>
+  Phone: <b><%=@property.contact_phone%></b>
+  <hr>
+  <a href="/users/<%=@property.id%>/change_listing">Edit Listing</a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="/prop_images/<%=@property.id%>/new">Add an Image</a>

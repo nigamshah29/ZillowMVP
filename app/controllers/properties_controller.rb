@@ -3,7 +3,9 @@ class PropertiesController < ApplicationController
   def homepage
   end
 
-  def show
+  def detail_page
+    @p = Property.find(1)
+    @prop_images=PropImage.where(property_id:params[:id])
   end
 
 
@@ -136,7 +138,7 @@ class PropertiesController < ApplicationController
 
   private
     def property_params
-      params.require(:property).require(
+      params.require(:property).permit(
         :description,
         :building_type,
         :price,
