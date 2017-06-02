@@ -1,6 +1,7 @@
 class PropertiesController < ApplicationController
 
   def homepage
+    @p = Property.find(1)
   end
 
   def detail_page
@@ -11,6 +12,7 @@ class PropertiesController < ApplicationController
 
 
   def favorite
+
     @fav = Favorite.create(property_id:params[:id], user_id:current_user.id)
     redirect_to "/"
 
@@ -157,5 +159,8 @@ class PropertiesController < ApplicationController
         :contact_email,
         :contact_phone
       )
+    end
+    def prop_image_params
+      params.require(:prop_image).permit(:property_id, :title, :image, :image_cache)
     end
 end

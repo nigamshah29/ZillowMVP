@@ -5,7 +5,7 @@
 
 <!-- Carousel 1
     ================================================== -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
       <!-- Indicators -->
       <div class="carousel-inner" role="listbox">
         <div class="item active">
@@ -44,21 +44,24 @@
       </div>
       <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
       </a>
       <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
       </a>
-      <form class="" action="/properties/1/favorite" method="post">
-        <input type="submit" class="heart" name="" value="favorite">
-        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
+      <!--- heart button -->
+      <!-- <form id="form1" action="" method="post">
+        <a href="#" onclick="document.getElementById('form1').submit();">Submit!</a>
+      </form> ##FIGURE OUT HOW TO SEND FROM FROM ANCHOR TAG##-->
+
+      <form class="" id="heart1" action="/properties/1/favorite" method="post">
+        <!-- <input type="submit" class="heart" name="" value="favorite"> -->
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <a id="heart_empty" class="heart empty" href="" onclick="document.getElementById('heart1').submit();"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></a>
       </form>
-      <a id="heart_empty" class="heart empty" href=""><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></a>
 
     </div><!-- /.carousel -->
-    <div id="myCarousel2" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel2" class="carousel slide" data-ride="carousel" data-interval="false">
       <!-- Indicators -->
       <div class="carousel-inner" role="listbox">
         <div class="item active">
@@ -97,16 +100,21 @@
       </div>
       <a class="left carousel-control" href="#myCarousel2" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
       </a>
       <a class="right carousel-control" href="#myCarousel2" role="button" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
       </a>
-      <a id="heart_empty" class="heart empty" href=""><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></a>
+
+      <!--- heart button -->
+
+      <form class="" id="heart1" action="/properties/1/favorite" method="post">
+        <!-- <input type="submit" class="heart" name="" value="favorite"> -->
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <a id="heart_empty" class="heart empty" href="" onclick="document.getElementById('heart1').submit();"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></a>
+      </form>
 
     </div><!-- /.carousel -->
-    <div id="myCarousel3" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel3" class="carousel slide" data-ride="carousel" data-interval="false" >
       <!-- Indicators -->
       <div class="carousel-inner" role="listbox">
         <div class="item active">
@@ -145,18 +153,16 @@
       </div>
       <a class="left carousel-control" href="#myCarousel3" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
       </a>
       <a class="right carousel-control" href="#myCarousel3" role="button" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
       </a>
-      <a id="heart_empty" class="heart empty" href=""><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></a>
+      <!--- heart button -->
+
+      <form class="" id="heart1" action="/properties/1/favorite" method="post">
+        <!-- <input type="submit" class="heart" name="" value="favorite"> -->
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <a id="heart_empty" class="heart empty" href="" onclick="document.getElementById('heart1').submit();"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></a>
+      </form>
 
     </div><!-- /.carousel -->
-
-    <script>
-    	$('.carousel ').carousel({
-    		interval: 3000
-    	})
-    </script>

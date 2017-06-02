@@ -55,7 +55,7 @@ class PropImagesController < ApplicationController
 
   private
     def prop_image_params
-      params.require(:prop_image).permit(:property_id, :title, :image, :image_cache)
+      params.require(:prop_image).permit(:property_id, :title, :image)
     end
 
     # def set_prop_image
