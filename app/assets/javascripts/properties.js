@@ -16,11 +16,8 @@ $(document).ready(function(){
 
   function toggleHeart(){
     $('.heart').on('click', function(e){
-      // e.preventDefault();
+      e.preventDefault();
       // alert('you favorited this property!');
-      $.post(this.href,function(data) {
-      $("#someContainer").html(data);
-    });
       $(this).html('<span class="glyphicon glyphicon-heart" aria-hidden="true">');
       // if($(this).hasClass('full')){
       //   $(this).removeClass('full');
