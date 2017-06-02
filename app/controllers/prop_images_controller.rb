@@ -26,7 +26,7 @@ class PropImagesController < ApplicationController
 
   def create
     p_id = params[:p_id]
-    @image = PropImage.new(property_id: p_id, title: params[:title], body: params[:body], image: params[:image], image_cache: params[:image_cache])
+    @image = PropImage.new(property_id: p_id, title: params[:title], image: params[:image], image_cache: params[:image_cache])
     if @image.save
       if @image.image.nil?
         flash[:messages] = ['Image nil!']
@@ -42,20 +42,20 @@ class PropImagesController < ApplicationController
 
   def show
     @p = Property.find(params[:p_id])
-    @prop_image = PropImage.where(property_id: @p.id)
+    @prop_image = PropImage.find_by(property_id: @p.id)
   end
 
-  def update
-    if @prop_image.update_attributes(prop_image_params)
-      redirect_to prop_images_path(@prop_image)
-    else
-      render :edit
-    end
-  end
+  # def update
+  #   if @prop_image.update_attributes(prop_image_params)
+  #     redirect_to prop_images_path(@prop_image)
+  #   else
+  #     render :edit
+  #   end
+  # end
 
   private
     def prop_image_params
-      params.require(:prop_image).permit(:property_id, :title, :body, :image, :image_cache)
+      params.require(:prop_image).permit(:property_id, :title, :image, :image_cache)
     end
 
     # def set_prop_image

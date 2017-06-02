@@ -1,1 +1,95 @@
-<h1>Detail Page</h1>
+  <head>
+    <meta charset="utf-8">
+    <title>Property Detail</title>
+    <style media="screen">
+      .container{
+        width: 425px;
+        display: inline-block;
+        float: left;
+      }
+      .container1{
+        width: 425px;
+        display: inline-block;
+        float: right;
+      }
+      .imagecontainer{
+        width: 100px;
+        height: 100px;
+
+      }
+    </style>
+  </head>
+  <body>
+
+
+<center>
+  <h1>Property Detail Page</h1>
+</center>
+
+<div class="imagecontainer">
+<div id="thumbs">
+
+    <span class="stretch"></span>
+</div>​
+</div>
+
+<br><br>
+<center>
+  <h3> Contact <%= @p.contact_name %>  Telephone: <%= @p.contact_phone %></h3>
+
+  <h3><%= @p.address %>, <%= @p.city %>, <%= @p.state %></h3>
+</center>
+<div class="container">
+  <table class="table">
+      <tbody>
+          <tr>
+            <th>Price:</th>
+              <td><%=@p.price %></td>
+          </tr>
+          <tr>
+            <th>Taxes:</th>
+              <td><%= @p.tax %></td>
+          </tr>
+        <tr>
+            <th>Building Type:</th>
+            	<td><%=@p.building_type%></td>
+          </tr>
+          <tr>
+            <th>Year Built </th>
+              <td><%=@p.year_built%>/td>
+          </tr>
+          <tr>
+            <th>Status: </th>
+              <td><%= @p.status %></td>
+          </tr>
+      </tbody>
+  </table>
+</div>
+<div class="container1">
+  <table class="table">
+      <tbody>
+          <tr>
+            <th>Bedrooms</th>
+              <td><%=  @p.no_bed%></td>
+          </tr>
+          <tr>
+            <th>Baths:</th>
+              <td><%= @p.tax %></td>
+          </tr>
+        <tr>
+            <th>Building Type:</th>
+              <td><%=@p.no_bath%></td>
+          </tr>
+          <tr>
+            <th>Garage: </th>
+              <td><%=@p.garage %>/td>
+          </tr>
+          <tr>
+            <th>Parking: </th>
+              <td><%= @p.parking %></td>
+          </tr>
+      </tbody>
+    </table>
+</div>
+
+</body>
