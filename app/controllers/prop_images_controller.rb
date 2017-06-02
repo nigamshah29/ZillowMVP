@@ -30,7 +30,7 @@ class PropImagesController < ApplicationController
     puts params[:image]
     @image = PropImage.new(property_id: p_id, title: params[:title], image: params[:image], image_cache: params[:image_cache])
     if @image.save
-      redirect_to "/prop_images/#{p_id}/new"
+      redirect_to "/properties/#{p_id}/detail_page"
     else
       flash[:messages] = @image.errors.full_messages
       return redirect_to "/prop_images/#{p_id}/new"
