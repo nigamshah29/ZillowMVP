@@ -5,7 +5,14 @@ class PropertiesController < ApplicationController
   end
 
   def detail_page
+    # @p = Property.find(1)
+
+    # @p = Property.find(1)
+  end
+
+  def detail_page
     @p = Property.find(params[:id])
+
     @prop_images=PropImage.where(property_id:params[:id])
   end
 
