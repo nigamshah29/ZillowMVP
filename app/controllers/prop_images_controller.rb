@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 class PropImagesController < ApplicationController
 
   # before_action :set_prop_image, only: [:show, :edit, :update]
@@ -27,16 +26,18 @@ class PropImagesController < ApplicationController
 
   def create
     p_id = params[:p_id]
-    @image = PropImage.new(property_id: p_id, title: params[:title], image: params[:image])
+    print params[:image]
+    puts params[:image]
+    @image = PropImage.new(property_id: p_id, title: params[:title], image: params[:image], image_cache: params[:image_cache])
     if @image.save
-      return redirect_to "/prop_images/#{p_id}/new"
+      redirect_to "/prop_images/#{p_id}/new"
     else
       flash[:messages] = @image.errors.full_messages
       return redirect_to "/prop_images/#{p_id}/new"
     end
-    redirect_to "/prop_images/#{p_id}/show"
-
-    @prop_image = PropImage.new(prop_image_params)
+    # redirect_to "/prop_images/#{p_id}/show"
+    #
+    # @prop_image = PropImage.new(prop_image_params)
 
     # respond_to do |format|
     #   if @pet.save
