@@ -1,2 +1,21 @@
-<h1>Properties#zestimate</h1>
-<p>Find me in app/views/properties/zestimate.html.erb</p>
+<%= render partial: 'shared/navbar' %>
+
+<h1 style="color:blue;"><b>Get your Zestimate!</b></h1>
+<hr>
+<h2><b>Address: </b></h2>
+<h3><p><%=@p.address%></p>
+<%=@p.city%>, <%=@p.state%> <%=@p.zipcode%></h3>
+
+<div style="padding:100px 500px; color:blue;">
+  <form action="/properties/<%=@p.id%>/zestimate" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <h1>Who is your country's president?</h1>
+      <br><br>
+    <h3>
+      <input type="radio" name="president" value="obama">  Barack Obama
+      <br><br>
+      <input type="radio" name="president" value="trump">  Donald Trump<br><br><br>
+      <input style="color:red;" type="submit" value="Find out how much my home is worth! >>>">
+    </h3>
+  </form>
+</div>

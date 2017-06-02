@@ -9,13 +9,10 @@ class PropertiesController < ApplicationController
     @prop_images=PropImage.where(property_id:params[:id])
   end
 
-
-
   def favorite
 
     @fav = Favorite.create(property_id:params[:id], user_id:current_user.id)
     redirect_to "/"
-
   end
 
   def list_property
@@ -103,7 +100,7 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def properties_list
+  def index
     @new_properties = Property.order('created_at DESC')
   end
 
@@ -136,6 +133,21 @@ class PropertiesController < ApplicationController
   end
 
   def zestimate
+    @p = Property.find(params[:p_id])
+  end
+
+  def make_zestimate
+    @p = Property.find(params[:p_id])
+    @pres = params[:president]
+    @zip_props = Property.where(zipcode: @p.zipcode)
+    zip_prices = @zip_props.select("price")
+    @average = zip_prices.sum("price") / zip_prices.size
+    if @pres == "obama"
+      @z = @average + (@average * 0.15)
+    else
+      @z = @average - (@average * 0.2)
+    end
+    render "make_zestimate"
   end
 
   private

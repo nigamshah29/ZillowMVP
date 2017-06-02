@@ -1,0 +1,39 @@
+<%= render partial: 'shared/navbar' %>
+
+
+<center>
+  <h1>My Zestimate: <span style="color:blue;">   $<%= @z%></span></h1>
+  <h3 style="color:gray;">Average in your area: $<%= @average %></h3>
+<br>
+<hr>
+<h2>Other Homes in Your Area: </h2>
+<br>
+<h4>
+<table class="table table-striped" style="width:800px;">
+  <tr>
+      <th>Address</th>
+      <th>Price</th>
+      <th>Zestimate</th>
+      <th>Difference</th>
+  </tr>
+  <% @zip_props.each do |p| %>
+  <tr>
+      <td><%=p.address%>, <%=p.city%>, <%=p.state%> <%=p.zipcode%></td>
+      <td>$<%=p.price%></td>
+      <% if @pres == "obama" %>
+        <td>$<%=@z = p.price + rand(1000..p.price) %></td>
+      <% else %>
+        <td>$<%=@z = p.price - rand(1000..p.price) %></td>
+      <% end %>
+      <% if @pres == "obama" %>
+        <td style="color:#33b20c;">+$<%= @d= @z - p.price %></td>
+      <% else %>
+        <td style="color:red;">-$<%= @d= p.price - @z %></td>
+      <% end %>
+  </tr>
+  <% end %>
+</table>
+</h4>
+<br><br><br>
+<a href="/properties/<%=@p.id%>/zestimate" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Refresh</a>
+</center>

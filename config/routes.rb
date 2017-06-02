@@ -40,7 +40,7 @@ Rails.application.routes.draw do
 
   get 'properties/confirm_property' => 'properties#confirm_property'
 
-  get 'properties' => 'properties#properties_list'
+  get 'properties' => 'properties#index'
 
   post 'properties/create' => 'properties#create'
 
@@ -57,7 +57,9 @@ Rails.application.routes.draw do
 
   get 'properties/rent_properties' => 'properties#rent_properties'
 
-  get 'properties/zestimate' => 'properties#zestimate'
+  get 'properties/:p_id/zestimate' => 'properties#zestimate'
+
+  post 'properties/:p_id/zestimate' => 'properties#make_zestimate'
 
   #P_Saved Routes
   post 'p_saveds/save_search' => 'p_saveds#save_search'
@@ -65,7 +67,7 @@ Rails.application.routes.draw do
   post 'p_saveds/favorite_property' => 'p_saveds#favorite_property'
 
   #Property Image Routes
-  get 'prop_images/index' => 'prop_images#index'
+  get 'prop_images' => 'prop_images#index'
 
   get 'prop_images/:p_id/new' => 'prop_images#new'
 
@@ -79,6 +81,10 @@ Rails.application.routes.draw do
 
   post 'properties/:id/favorite' => 'properties#favorite'
 
+  #Agent Routes
+  get 'agents/contact_agent' => 'agents#contact_agent'
+
+  post 'agents/create' => 'agents#create'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
