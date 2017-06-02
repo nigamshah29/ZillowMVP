@@ -1,13 +1,4 @@
-<nav>
-  <a href="#">Back to Homepage</a><br>
-  Signed In: <%=current_user.first_name%>
-  <a href="/logout"><button>Logout</button></a>
-  <form class="" action="index.html" method="post">
-    Search: <input type="text" name="search_query" placeholder="Enter city, address, or zip">
-  </form>
-</nav>
-
-<hr>
+<%= render partial: 'shared/navbar' %>
 
 <h1>Confirm Your Listing</h1>
 

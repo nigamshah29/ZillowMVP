@@ -1,10 +1,4 @@
 <%= render partial: 'shared/navbar' %>
-<p>
-  Signed In: <%=current_user.first_name%><br>
-</p>
-
-<hr>
-
 <h1>List your Property</h1>
 <hr>
 
@@ -68,6 +62,6 @@
       <option value="New Construction">New Construction</option>
     </select>
     Your Phone Number: <input type="text" name="contact_phone">
-    <br><br><br>
-    <input type="submit" name="listing" value="List Property">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <input type="submit" class="btn btn-info" value="List Property">
 </form>

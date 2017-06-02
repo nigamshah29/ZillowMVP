@@ -14,32 +14,19 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">Buy <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Rent</a></li>
+        <li><a href="/properties">Buy <span class="sr-only">(current)</span></a></li>
+        <li><a href="/properties">Rent</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sell <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="/properties/list_property">Create a Listing</a></li>
-            <li><a href="#">Claim a Listed Home</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
           </ul>
         </li>
       </ul>
       <div class="col-sm-3 col-md-3">
         <form class="navbar-form" role="search">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Enter city, barrio, or zip" name="q">
+            <input type="text" class="form-control" style="width:400px;" placeholder="Enter city, barrio, or zip" name="q">
             <div class="input-group-btn">
                 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
             </div>
@@ -47,20 +34,25 @@
         </form>
     </div>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/properties/zestimate">Zestimate</a></li>
+        <li><a href="/properties">Browse Homes</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://masmejor.com/"><i style="color:red;">Sign Up for Cholo Fit!</i></a></li>
+          </ul>
+        </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Zillow <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li class="SHdropdown_titles"><a href="/users/user_profile">My Profile</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="/users/user_profile">Hearted Homes</a></li>
-            <li><a href="#">Claim my Home</a></li>
             <li role="separator" class="divider"></li>
             <li class="SHdropdown_titles"><a href="/users/my_account">My Account</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">Saved Searches</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Settings</a></li>
+            <li><a href="/agents/contact_agent">Contact an Agent</a></li>
             <li><a href="/logout">Logout</a></li>
           </ul>
         </li>
