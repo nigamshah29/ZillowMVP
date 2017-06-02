@@ -94,3 +94,10 @@ p.save
 p = Property.create(description:"Holy Cow!", building_type:"Home", price: 635000,address: "8910 Clark Street Park Forest,", zipcode:83838, year_built:"1992-06-02 05:13:56", status:"For Sale", garage:true, no_bed:4, no_bath:2.5, parking:"Street Parking Available", tax:2.5, contact_name:"Rico", contact_email:"e_dubs@gmail.com", contact_phone:"773-112-4537")
 p.state = "Illinois"
 p.save
+
+Agent.create(name:"Bob Murphy",email:"murph@aol.com", phone:"663-373-3039")
+Agent.create(name:"Bill Sully",email:"sully@aol.com", phone:"663-373-3039")
+Agent.create(name:"Jane Anne",email:"jane@aol.com", phone:"663-373-3039")
+Agent.create(name:"Dee Ling",email:"ling@aol.com", phone:"663-373-3039")
+Agent.create(name:"Ann Susan",email:"susan@aol.com", phone:"663-333-3039")
+Agent.create(name:"Creeper Cholofit",email:"creeper@aol.com", phone:"999-333-3039")
