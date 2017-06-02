@@ -54,7 +54,8 @@ class PropImagesController < ApplicationController
 
   def show
     @p = Property.find(params[:p_id])
-    @prop_image = PropImage.find_by(property_id: @p.id)
+    @prop_image = PropImage.last
+    puts @prop_image.image
   end
 
   # def update
