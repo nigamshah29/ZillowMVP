@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :pets
   resources :prop_images
 
   root 'properties#homepage'

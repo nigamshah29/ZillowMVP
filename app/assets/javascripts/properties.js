@@ -41,4 +41,19 @@ $(document).ready(function(){
       });
   });
 
+
+  $('#heart_empty').on("click", function(event){
+    console.log(event);
+    event.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: "/properties/1/favorite",
+      data: "",
+      success: function(result) {
+        alert('successfully favorited!');
+
+      },
+    });
+  });
+
 });

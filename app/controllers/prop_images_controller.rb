@@ -26,17 +26,27 @@ class PropImagesController < ApplicationController
 
   def create
     p_id = params[:p_id]
-    @image = PropImage.new(property_id: p_id, title: params[:title], image: params[:image], image_cache: params[:image_cache])
+    @image = PropImage.new(property_id: p_id, title: params[:title], image: params[:image])
     if @image.save
-      if @image.image.nil?
-        flash[:messages] = ['Image nil!']
-        return redirect_to "/prop_images/#{p_id}/new"
-      end
+      return redirect_to "/prop_images/#{p_id}/new"
     else
       flash[:messages] = @image.errors.full_messages
       return redirect_to "/prop_images/#{p_id}/new"
     end
     redirect_to "/prop_images/#{p_id}/show"
+
+    @prop_image = PropImage.new(prop_image_params)
+
+    # respond_to do |format|
+    #   if @pet.save
+    #     format.html { redirect_to @pet, notice: 'Pet was successfully created.' }
+    #     format.json { render :show, status: :created, location: @pet }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @pet.errors, status: :unprocessable_entity }
+    #   end
+    # end
+
   end
 
 
@@ -54,9 +64,9 @@ class PropImagesController < ApplicationController
   # end
 
   private
-    def prop_image_params
-      params.require(:prop_image).permit(:property_id, :title, :image)
-    end
+    # def prop_image_params
+    #   params.require(:prop_image).permit(:property_id, :title, :image)
+    # end
 
     # def set_prop_image
     #   @prop_image = PropImage.find(params[:id])
