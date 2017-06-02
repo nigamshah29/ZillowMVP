@@ -2,7 +2,7 @@
 <div id="map" style="display:inline-block;"></div>
 <script>
   function initMap() {
-    var current_location = new google.maps.LatLng(location.coords.latitude, location.coords.longitude);
+    var current_location = new google.maps.LatLng(41.901695, -87.7094092);
 
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 12,
@@ -12,6 +12,16 @@
       position: current_location,
       map: map
     });
+    $.getJSON('/properties/properties_json', function (results) {
+      for (var i = 0; i < results.length; i++) {
+        console.log(results[i]);
+        var latLng = new google.maps.LatLng(results[i].latitude,results[i].longitude);
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map
+        });
+      }
+    })
   }
 
   $(document).ready(function()
@@ -20,19 +30,7 @@
   });
 
 
-  var script = document.createElement('script');
-  script.src =
 
-  window.eqfeed_callback = function(results) {
-        for (var i = 0; i < results.features.length; i++) {
-          var coords = results.features[i].geometry.coordinates;
-          var latLng = new google.maps.LatLng(coords[1],coords[0]);
-          var marker = new google.maps.Marker({
-            position: latLng,
-            map: map
-          });
-        }
-      }
 
 </script>
 <script async defer
@@ -41,7 +39,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-sQVuX8b2ECGCusIws9k7Jta
 
 <div class="q
 ueries" style="display:inline-block; vertical-align:top;">
-
+  <div id="map"></div>
   <h2>Real Estate</h2>
   <nav>
       <ul class="nav nav-pills">
@@ -61,8 +59,8 @@ ueries" style="display:inline-block; vertical-align:top;">
       </tr>
       <% @p.each do |a| %>
       <tr>
-          <td><%=a.address%>,
-            <p><%=a.city%>, <%=a.state%> <%=a.zipcode%></p></td>
+          <td><%=a.address%>,<%=a.state%>
+            <%=a.zipcode%></td>
           <% if a.status == "For Rent"%>
             <td>$<%=a.price%>/month</td>
           <% else %>

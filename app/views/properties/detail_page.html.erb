@@ -15,13 +15,13 @@
     <div class="carousel-inner" role="listbox">
       <div class="item active">
 
-        
+
         <%@prop_images.each do |image|%>
           <%=image_tag image.image%>
         <%end %>
         <div class="carousel-caption d-none d-md-block">
 
-          <p class="subtitles"><%= @p.address %>, <%= @p.city %>, <%= @p.state %><br>
+          <p class="subtitles"><%= @p.address %>, <%= @p.state %> <%= @p.zipcode %> %><br>
             Contact: <%= @p.contact_name %> <br> Telephone: <%= @p.contact_phone %></p>
         </div>
         <div class="container">

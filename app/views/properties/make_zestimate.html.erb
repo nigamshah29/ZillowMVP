@@ -18,7 +18,7 @@
   </tr>
   <% @zip_props.each do |p| %>
   <tr>
-      <td><%=p.address%>, <%=p.city%>, <%=p.state%> <%=p.zipcode%></td>
+      <td><%=p.address%>, <%=p.state%> <%=p.zipcode%></td>
       <td>$<%=p.price%></td>
       <% if @pres == "obama" %>
         <td>$<%=@z = p.price + rand(1000..p.price) %></td>

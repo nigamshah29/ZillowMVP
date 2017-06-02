@@ -44,8 +44,7 @@ class PropertiesController < ApplicationController
   end
 
   def confirm_property
-    @address = session[:address]
-    @city = session[:city]
+    @address = session[:address] + ", " + session[:city]
     @state = session[:state]
     @zipcode = session[:zipcode]
     @building_type = session[:building_type]
@@ -76,7 +75,6 @@ class PropertiesController < ApplicationController
   def create
     @p = Property.new
     @p.address = session[:address]
-    @p.city = session[:city]
     @p.state = session[:state]
     @p.zipcode = session[:zipcode]
     @p.building_type = session[:building_type]
@@ -160,8 +158,9 @@ class PropertiesController < ApplicationController
     @p.each do |p|
       @arr << p.address
     end
-    # render json: @p
-    render json: @arr
+    render json: @p.to_json
+
+    # render json: @arr
   end
 
 

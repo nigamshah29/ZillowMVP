@@ -7,8 +7,7 @@
   <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
   <h3>Location:</h3>
     Address: <input type="text" name="property[address]" value="<%=@p.address%>"><br><br>
-    City: <input type="text" name="property[city]" value="<%=@p.city%>">
-    State: <%= select_tag "property[state]", options_for_select(us_states) %>
+    State: <%= select_tag “property[state]“, options_for_select(us_states) %>
     Zip: <input type="text" name="property[zipcode]" value="<%=@p.zipcode%>"><br>
     <hr>
   <h3>Property Details:</h3>
