@@ -1,0 +1,16 @@
+<%= render partial: 'shared/navbar' %>
+
+<h1>Your Saved Searches</h1>
+
+<table class="table table-striped" style="width:600px;">
+  <tr>
+      <th>Saved Searches</th>
+      <th></th>
+  </tr>
+  <% @saved_searches.each do |s| %>
+  <tr>
+      <td><%=s.query%></td>
+      <td><a href="/p_saveds/search">Search</a></td>
+  </tr>
+  <% end %>
+</table>

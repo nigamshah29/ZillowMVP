@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170602045854) do
+ActiveRecord::Schema.define(version: 20170602165334) do
 
   create_table "agents", force: :cascade do |t|
     t.string "name"
@@ -31,15 +31,9 @@ ActiveRecord::Schema.define(version: 20170602045854) do
 
   create_table "p_saveds", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "property_id"
-    t.integer "savedsearch_zip"
-    t.integer "savedsearch_no_bed"
-    t.float "savedsearch_no_bath"
-    t.integer "savedsearch_priceMin"
-    t.integer "savedsearch_priceMax"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["property_id"], name: "index_p_saveds_on_property_id"
+    t.string "query"
     t.index ["user_id"], name: "index_p_saveds_on_user_id"
   end
 

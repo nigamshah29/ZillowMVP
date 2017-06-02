@@ -25,9 +25,10 @@
         </li>
       </ul>
       <div class="col-sm-3 col-md-3">
-        <form class="navbar-form" role="search">
+        <form action="/p_saveds/search" method="post" class="navbar-form" role="search">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Enter city, barrio, or zip" name="q">
+            <input type="text" class="form-control" placeholder="Enter city, barrio, or zip" name="query">
             <div class="input-group-btn">
                 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
             </div>
@@ -51,7 +52,7 @@
             <li role="separator" class="divider"></li>
             <li class="SHdropdown_titles"><a href="/users/my_account">My Account</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Saved Searches</a></li>
+            <li><a href="/p_saveds/saved_searches">Saved Searches</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="/agents/contact_agent">Contact an Agent</a></li>
             <li><a href="/logout">Logout</a></li>

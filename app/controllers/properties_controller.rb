@@ -60,8 +60,6 @@ class PropertiesController < ApplicationController
     @tax = (h[@state][0] * 100).round(2) #as a percentage
     session[:tax] = @tax
     @property_tax = (h[@state][0] * @price.to_f).round(2)
-    # @longitude =
-    # @latitude =
     render "confirm_property"
   end
 
@@ -148,6 +146,17 @@ class PropertiesController < ApplicationController
     end
     render "make_zestimate"
   end
+
+  def properties_json
+    @p = Property.all
+    @arr = []
+    @p.each do |p|
+      @arr << p.address
+    end
+    # render json: @p
+    render json: @arr
+  end
+
 
   private
     def property_params

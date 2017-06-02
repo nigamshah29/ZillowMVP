@@ -6,12 +6,15 @@
   <h1 id="jumbotext"></h1>
   <center>
     <div class="col-lg-6">
-      <div class="input-group">
-        <input style="display:center;" type="text" class="form-control" placeholder="Enter an address, barrio, city, or zipcode">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button">Search</button>
-        </span>
-      </div><!-- /input-group -->
+      <form action="/p_saveds/search" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <div class="input-group">
+          <input style="display:center;" name="query" type="text" class="form-control" placeholder="Enter an address, barrio, city, or zipcode">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">Search</button>
+          </span>
+        </div><!-- /input-group -->
+      </form>
       <small id="homies">*Formerly Sherlock Homies™</small>
     </div><!-- /.col-lg-6 -->
   </center>
