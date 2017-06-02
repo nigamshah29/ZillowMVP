@@ -36,7 +36,6 @@ class UsersController < ApplicationController
     if user.valid?
       user.save
       session[:user_id] = user.id
-      flash[:message] = ["user created"]
       redirect_to '/users/user_profile'
     else
       flash[:message] = user.errors.full_messages
@@ -45,6 +44,7 @@ class UsersController < ApplicationController
   end
 
   def user_profile
+    @prop_images = PropImage.all
     @fav_properties = Property.all # NOTE: Need to add query
     @listed_properties = Property.where(contact_email: current_user.email)
   end

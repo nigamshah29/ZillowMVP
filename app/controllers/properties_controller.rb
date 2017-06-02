@@ -2,6 +2,7 @@ class PropertiesController < ApplicationController
 
   def homepage
     # @p = Property.find(1)
+    # @latest = Property.last(4).order("id desc")
   end
 
   def detail_page
@@ -18,7 +19,7 @@ class PropertiesController < ApplicationController
 
   def favorite
     @fav = Favorite.create(property_id:params[:id], user_id:current_user.id)
-    redirect_to "/"
+    redirect_to "/users/user_profile"
   end
 
   def list_property
@@ -67,8 +68,6 @@ class PropertiesController < ApplicationController
     @tax = (h[@state][0] * 100).round(2) #as a percentage
     session[:tax] = @tax
     @property_tax = (h[@state][0] * @price.to_f).round(2)
-    # @longitude =
-    # @latitude =
     render "confirm_property"
   end
 
@@ -155,6 +154,17 @@ class PropertiesController < ApplicationController
     end
     render "make_zestimate"
   end
+
+  def properties_json
+    @p = Property.all
+    @arr = []
+    @p.each do |p|
+      @arr << p.address
+    end
+    # render json: @p
+    render json: @arr
+  end
+
 
   private
     def property_params

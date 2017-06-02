@@ -30,7 +30,7 @@ class PropImagesController < ApplicationController
     puts params[:image]
     @image = PropImage.new(property_id: p_id, title: params[:title], image: params[:image], image_cache: params[:image_cache])
     if @image.save
-      redirect_to "/prop_images/#{p_id}/new"
+      redirect_to "/properties/#{p_id}/detail_page"
     else
       flash[:messages] = @image.errors.full_messages
       return redirect_to "/prop_images/#{p_id}/new"
@@ -54,7 +54,8 @@ class PropImagesController < ApplicationController
 
   def show
     @p = Property.find(params[:p_id])
-    @prop_image = PropImage.find_by(property_id: @p.id)
+    @prop_image = PropImage.last
+    puts @prop_image.image
   end
 
   # def update

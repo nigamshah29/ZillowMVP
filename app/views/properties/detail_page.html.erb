@@ -14,7 +14,11 @@
     <!-- Indicators -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img class="first-slide" src="/assets/house1.jpeg" alt="First slide">
+
+        
+        <%@prop_images.each do |image|%>
+          <%=image_tag image.image%>
+        <%end %>
         <div class="carousel-caption d-none d-md-block">
 
           <p class="subtitles"><%= @p.address %>, <%= @p.city %>, <%= @p.state %><br>

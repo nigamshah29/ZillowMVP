@@ -63,7 +63,9 @@ Rails.application.routes.draw do
   post 'properties/:p_id/zestimate' => 'properties#make_zestimate'
 
   #P_Saved Routes
-  post 'p_saveds/save_search' => 'p_saveds#save_search'
+  post 'p_saveds/search' => 'p_saveds#search'
+
+  get 'p_saveds/saved_searches' => 'p_saveds#saved_searches'
 
   post 'p_saveds/favorite_property' => 'p_saveds#favorite_property'
 
@@ -81,6 +83,8 @@ Rails.application.routes.draw do
   patch 'prop_images/update' => 'prop_images#update'
 
   post 'properties/:id/favorite' => 'properties#favorite'
+
+  get 'properties/properties_json' => 'properties#properties_json'
 
   #Agent Routes
   get 'agents/contact_agent' => 'agents#contact_agent'
