@@ -50,7 +50,7 @@ class PropertiesController < ApplicationController
     @zipcode = session[:zipcode]
     @building_type = session[:building_type]
     year_built = session[:year_built].to_datetime
-    @year_built = year_built.strftime('%B %d, %Y')
+    @year_built = year_built.try(:strftime,'%B %d, %Y')
     @no_bed = session[:no_bed]
     @no_bath = session[:no_bath]
     @garage = session[:garage]
@@ -83,7 +83,7 @@ class PropertiesController < ApplicationController
     @p.zipcode = session[:zipcode]
     @p.building_type = session[:building_type]
     year_built = session[:year_built].to_datetime
-    @p.year_built = year_built.strftime('%B %d, %Y')
+    @p.year_built = year_built.try(:strftime,'%B %d, %Y')
     @p.no_bed = session[:no_bed]
     @p.no_bath = session[:no_bath]
     @p.garage = session[:garage]
