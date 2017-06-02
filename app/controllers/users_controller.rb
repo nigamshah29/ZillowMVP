@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       if user.authenticate params[:password]
         session[:first_name] = user.first_name
         session[:user_id] = user.id
-        redirect_to '/users/user_profile'
+        redirect_to '/'
       else
         flash[:message] = ["User password is incorrect"]
         redirect_to "/users/welcome"
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     if user.valid?
       user.save
       session[:user_id] = user.id
-      redirect_to '/users/user_profile'
+      redirect_to '/'
     else
       flash[:message] = user.errors.full_messages
       redirect_to '/users/welcome'
