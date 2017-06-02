@@ -6,14 +6,6 @@
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 12,
       center: uluru
-      mapOptions: {
-        zoomControl: boolean,
-        mapTypeControl: boolean,
-        scaleControl: boolean,
-        streetViewControl: boolean,
-        rotateControl: boolean,
-        fullscreenControl: boolean
-      }
     });
     var marker = new google.maps.Marker({
       position: uluru,
@@ -28,29 +20,36 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-sQVuX8b2ECGCusIws9k7Jta
 
   <h2>Real Estate</h2>
   <nav>
-      <a href="/properties/most_popular">Most Popular</a>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="/properties/newest">Newest</a>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="/properties/low_to_high">Rent(low to high)</a>
+      <ul class="nav nav-pills">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#/properties/most_popular">Most Popular</a></li>
+        <li><a href="/properties/newest">Most Recent</a></li>
+        <li><a href="/properties/low_to_high">Rent (low to high)</a></li>
+      </ul>
   </nav>
   <div class="listings" style="background-color:grey;">
-    <ul>
-      <% @new_properties.each do |p| %>
-        <li><%=p%></li>
+    <table class="table table-striped" style="width:600px;">
+      <tr>
+          <th>Address</th>
+          <th>Price</th>
+          <th>Contact</th>
+          <th></th>
+      </tr>
+      <% @p.each do |a| %>
+      <tr>
+          <td><%=a.address%>,
+            <p><%=a.city%>, <%=a.state%> <%=a.zipcode%></p></td>
+          <% if a.status == "For Rent"%>
+            <td>$<%=a.price%>/month</td>
+          <% else %>
+            <td>$<%=a.price%>/month</td>
+          <% end %>
+          <td><b><%=a.contact_name%></b>
+            <p><%=a.contact_email%></p><p>Phone: <%=a.contact_phone%></p>
+          </td>
+          <td><a href="/properties/<%=a.id%>/detail_page">Details</a></td>
+      </tr>
       <% end %>
-    </ul>
-    <ul>
-      <% if false %>
-      <% @popular_properties.each do |p| %>
-        <li><%=p%></li>
-      <% end %>
-    </ul>
-    <ul>
-      <% @rent_properties.each do |p| %>
-        <li><%=p%></li>
-      <% end %>
-      <% end %>
-    </ul>
+    </table>
   </div>
 </div>

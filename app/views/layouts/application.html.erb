@@ -3,7 +3,7 @@
   <head>
     <title>NewZillow</title>
     <%= csrf_meta_tags %>
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
@@ -43,6 +43,12 @@
         <% end %>
       <% end %>
     </div>
+
+    <% if flash[:message] %>
+      <% flash[:message].each do |msg| %>
+        <h3 style="color:red;"><i><%=msg%></h3></i>
+      <%end%>
+    <%end%>
 
     <% if flash[:notice] %>
       <div class="notice" style="color:blue;"><%= flash[:notice] %></div>

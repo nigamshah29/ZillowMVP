@@ -1,16 +1,15 @@
 class PropertiesController < ApplicationController
 
   def homepage
-    @p = Property.find(1)
+    # @p = Property.find(1)
   end
 
   def detail_page
-    @p = Property.find(1)
+    @p = Property.find(params[:id])
     @prop_images=PropImage.where(property_id:params[:id])
   end
 
   def favorite
-
     @fav = Favorite.create(property_id:params[:id], user_id:current_user.id)
     redirect_to "/"
   end
@@ -93,7 +92,7 @@ class PropertiesController < ApplicationController
       puts "***********************************"
       puts "Property successfully posted!"
       puts "***********************************"
-      redirect_to "/properties/homepage"
+      redirect_to "/properties"
     else
       flash[:errors] = @p.errors.full_messages
       redirect_to "/properties/confirm_property"
@@ -101,24 +100,24 @@ class PropertiesController < ApplicationController
   end
 
   def index
-    @new_properties = Property.order('created_at DESC')
+    @p = Property.order('created_at DESC')
   end
 
-  def new_properties
+  def newest
+    @p = Property.order('created_at DESC').limit(5).all
     redirect_to '/properties'
   end
 
-  # def popular_properties
-  #   @popular_properties = Property.all  # TODO: order
-  #   # @new_properties = Property.order('created_at DESC')
-  #   redirect_to '/properties'
-  # end
-  #
-  # def rent_properties
-  #   @rent_properties = Property.all  # TODO: order
-  #   # @rent_properties = Property.order('price DESC')
-  #   redirect_to '/properties'
-  # end
+  def most_popular
+    @p = Property.select("properties.id, count(favorites.id) AS fav_count").
+        joins(:favorites).group("properties.id").order("fav_count DESC").limit(5)
+    redirect_to '/properties'
+  end
+
+  def low_to_high
+    @p = Property.where(status:"For Rent").order("price").limit(5)
+    redirect_to '/properties'
+  end
 
   def search
   end

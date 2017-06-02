@@ -11,5 +11,21 @@
   User.create(first_name:"David", last_name:"Pina", email:"pina@gmail.com", password:"abcd", password_confirmation:"abcd")
 
   Property.create(address:"7415 N. Fairfield", city:"Chicago", state:"Illinois", zipcode:60645, building_type:"House", year_built:1992-02-02, status:"For Sale", contact_name:"Nigam Shah", contact_email:"nigam129@gmail.com")
-
   Property.create(address:"909 W. Logan", city:"Los Angeles", state:"California", zipcode:90034, building_type:"Condo", year_built:1993-22-10, status:"For Rent", contact_name:"Rogelio", contact_email:"devcodus@gmail.com")
+
+  Favorite.create(property_id:1,user_id:1)
+  Favorite.create(property_id:2,user_id:1)
+  Favorite.create(property_id:3,user_id:1)
+  Favorite.create(property_id:4,user_id:1)
+  Favorite.create(property_id:1,user_id:2)
+  Favorite.create(property_id:2,user_id:2)
+  Favorite.create(property_id:3,user_id:2)
+  Favorite.create(property_id:1,user_id:3)
+  Favorite.create(property_id:1,user_id:4)
+  Favorite.create(property_id:2,user_id:3)
+  Favorite.create(property_id:4,user_id:3)
+  Favorite.create(property_id:4,user_id:4)
+  Favorite.create(property_id:1,user_id:5)
+  Favorite.create(property_id:2,user_id:5)
+  Favorite.create(property_id:3,user_id:5)
+  Favorite.create(property_id:4,user_id:5)
