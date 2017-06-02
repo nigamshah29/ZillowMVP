@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class PropImagesController < ApplicationController
 
   # before_action :set_prop_image, only: [:show, :edit, :update]

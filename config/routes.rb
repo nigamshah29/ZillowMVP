@@ -52,11 +52,11 @@ Rails.application.routes.draw do
   get 'properties/edit_listing' => 'properties#edit_listing'
 
 #Query routes for Properties Page
-  get 'properties/new_properties' => 'properties#new_properties'
+  get 'properties/newest' => 'properties#newest'
 
-  get 'properties/popular_properties' => 'properties#popular_properties'
+  get 'properties/most_popular' => 'properties#most_popular'
 
-  get 'properties/rent_properties' => 'properties#rent_properties'
+  get 'properties/low_to_high' => 'properties#low_to_high'
 
   get 'properties/:p_id/zestimate' => 'properties#zestimate'
 
