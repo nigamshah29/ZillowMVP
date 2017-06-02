@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class PropertiesController < ApplicationController
 
   def homepage
