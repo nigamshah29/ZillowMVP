@@ -1,5 +1,8 @@
 <center><h2 class="centered_titles">Recent for Sale</h2>
+  <span class="halflings halflings-heart"></span>
 <p class="centered_titles">Fresh out the Oven</p>
+<span class="halflings halflings-heart"></span>
+
 <!-- Carousel 1
     ================================================== -->
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -8,7 +11,7 @@
         <div class="item active">
           <img class="first-slide" src="/assets/house1.jpeg" alt="First slide">
           <div class="carousel-caption d-none d-md-block">
-            <h3>$250,000</h3>
+            <h3>$250,000 <span class="halflings halflings-heart"></span></h3>
             <p class="subtitles">5522 W. Chicago Ave.</p>
           </div>
           <div class="container">
@@ -24,9 +27,6 @@
           </div>
           <div class="container">
             <div class="carousel-caption">
-              <!-- <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
-
             </div>
           </div>
         </div>
@@ -38,8 +38,6 @@
           </div>
           <div class="container">
             <div class="carousel-caption">
-              <!-- <h1>One more for good measure.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
             </div>
           </div>
         </div>
@@ -52,6 +50,13 @@
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
+      <form class="" action="/properties/1/favorite" method="post">
+        <input type="submit" class="heart" name="" value="favorite">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+      </form>
+      <a id="heart_empty" class="heart empty" href="properties/1/favorite" formaction="post"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></a>
+
     </div><!-- /.carousel -->
     <div id="myCarousel2" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
@@ -75,9 +80,6 @@
           </div>
           <div class="container">
             <div class="carousel-caption">
-              <!-- <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
-
             </div>
           </div>
         </div>
@@ -89,8 +91,6 @@
           </div>
           <div class="container">
             <div class="carousel-caption">
-              <!-- <h1>One more for good measure.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
             </div>
           </div>
         </div>
@@ -103,6 +103,8 @@
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
+      <a id="heart_empty" class="heart empty" href="properties/:id/favorite" formaction="post"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></a>
+
     </div><!-- /.carousel -->
     <div id="myCarousel3" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
@@ -126,9 +128,6 @@
           </div>
           <div class="container">
             <div class="carousel-caption">
-              <!-- <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
-
             </div>
           </div>
         </div>
@@ -140,8 +139,6 @@
           </div>
           <div class="container">
             <div class="carousel-caption">
-              <!-- <h1>One more for good measure.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
             </div>
           </div>
         </div>
@@ -154,6 +151,8 @@
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
+      <a id="heart_empty" class="heart empty" href="properties/:id/favorite" formaction="post"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></a>
+
     </div><!-- /.carousel -->
 
     <script>

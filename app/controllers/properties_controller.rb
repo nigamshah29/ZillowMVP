@@ -6,6 +6,14 @@ class PropertiesController < ApplicationController
   def show
   end
 
+
+
+  def favorite
+    @fav = Favorite.create(property_id:params[:id], user_id:current_user.id)
+    redirect_to "/"
+
+  end
+
   def list_property
   end
 

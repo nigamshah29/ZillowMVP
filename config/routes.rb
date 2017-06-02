@@ -49,11 +49,18 @@ Rails.application.routes.draw do
 
   get 'properties/zestimate' => 'properties#zestimate'
 
+  post 'properties/:id/favorite' => 'properties#favorite'
+
+
   #P_Saved Routes
 
   post 'p_saveds/save_search' => 'p_saveds#save_search'
 
   post 'p_saveds/favorite_property' => 'p_saveds#favorite_property'
+
+  post 'p_saveds/heart' => 'p_saved#create'
+
+  delete 'p_saveds/heart-empty' => 'p_saved#destroy'
 
   get 'prop_images/index'
 
@@ -66,5 +73,7 @@ Rails.application.routes.draw do
   get 'prop_images/show'
 
   get 'prop_images/update'
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

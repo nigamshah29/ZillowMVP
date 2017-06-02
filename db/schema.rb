@@ -10,12 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531164434) do
+ActiveRecord::Schema.define(version: 20170601230751) do
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "property_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_favorites_on_property_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
 
   create_table "p_saveds", force: :cascade do |t|
     t.integer "user_id"
     t.integer "property_id"
-    t.boolean "favorited"
     t.integer "savedsearch_zip"
     t.integer "savedsearch_no_bed"
     t.float "savedsearch_no_bath"

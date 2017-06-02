@@ -4,4 +4,11 @@ class PSavedsController < ApplicationController
 
   def favorite_property
   end
+
+  def create
+  end
+
+  def destroy
+  end
+  
 end
