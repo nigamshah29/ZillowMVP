@@ -3,8 +3,7 @@
 <h1 style="color:blue;"><b>Get your Zestimate!</b></h1>
 <hr>
 <h2><b>Address: </b></h2>
-<h3><p><%=@p.address%></p>
-<%=@p.city%>, <%=@p.state%> <%=@p.zipcode%></h3>
+<h3><p><%=@p.address%></p>, <%=@p.state%> <%=@p.zipcode%></h3>
 
 <div style="padding:100px 500px; color:blue;">
   <form action="/properties/<%=@p.id%>/zestimate" method="post">

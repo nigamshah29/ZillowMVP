@@ -2,8 +2,12 @@ class PSavedsController < ApplicationController
 
   def search
     @query = params[:query]
-    PSaved.create(query: params[:query], user_id: current_user.id)
-    redirect_to '/properties'
+    if PSaved.create(query: params[:query], user_id: current_user.id)
+      redirect_to '/properties'
+    else
+      flash[:errors] = @p.errors.full_messages
+      redirect_to '/welcome'
+    end
   end
 
   def saved_searches
