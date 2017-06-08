@@ -10,10 +10,11 @@
     <a href="/properties" style="margin-left:100px; font-size:18px;"><u>Back</u></a>
 <center>
   <h1>Property Detail Page</h1>
+  <br>
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <div class="carousel-inner" role="listbox">
-      <div class="item active">
+      <div style="width:600px;" class="item active">
 
 
         <%@prop_images.each do |image|%>
@@ -21,7 +22,7 @@
         <%end %>
         <div class="carousel-caption d-none d-md-block">
 
-          <p class="subtitles"><%= @p.address %>, <%= @p.state %> <%= @p.zipcode %> %><br>
+          <p class="subtitles"><%= @p.address %>, <%= @p.state %> <%= @p.zipcode %><br>
             Contact: <%= @p.contact_name %> <br> Telephone: <%= @p.contact_phone %></p>
         </div>
         <div class="container">
@@ -32,12 +33,12 @@
 </center>
 
 
-<div class="imagecontainer">
+<!-- <div class="imagecontainer">
 <div id="thumbs">
 
     <span class="stretch"></span>
 </div>​
-</div>
+</div> -->
 
 <center>
 <div class="container">
@@ -45,7 +46,7 @@
       <tbody>
           <tr>
             <th>Price:</th>
-              <td><%=@p.price %></td>
+              <td><%=number_to_currency(@p.price)%></td>
           </tr>
           <tr>
             <th>Taxes:</th>
@@ -57,7 +58,7 @@
           </tr>
           <tr>
             <th>Year Built </th>
-              <td><%=@p.year_built%>/td>
+              <td><%=@p.year_built.strftime('%B %d, %Y')%></td>
           </tr>
           <tr>
             <th>Status: </th>
@@ -71,15 +72,15 @@
       <tbody>
           <tr>
             <th>Bedrooms</th>
-              <td><%=  @p.no_bed%></td>
+              <td><%= @p.no_bed%></td>
           </tr>
           <tr>
             <th>Baths:</th>
-              <td><%= @p.tax %></td>
+              <td><%= @p.no_bath %></td>
           </tr>
         <tr>
             <th>Building Type:</th>
-              <td><%=@p.no_bath%></td>
+              <td><%=@p.building_type%></td>
           </tr>
           <tr>
             <th>Garage: </th>

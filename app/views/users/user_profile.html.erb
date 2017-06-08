@@ -13,7 +13,7 @@
           <th>Contact</th>
       </tr>
       <% @fav_properties.each do |p| %>
-      <tr>
+      <tr id="<%= p.id %>">
           <td><%=p.address%><%=p.state%> <%=p.zipcode%></td>
           <td>$<%=p.price%></td>
           <td><b><%=p.contact_name%> </b> <%=p.contact_phone%></td>

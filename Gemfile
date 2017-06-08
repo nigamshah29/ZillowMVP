@@ -35,6 +35,7 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'paperclip', '~> 5.1'
 gem 'geocoder'
 gem 'geokit-rails'
+gem 'gmaps4rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -19,7 +19,7 @@ class PropertiesController < ApplicationController
 
   def favorite
     @fav = Favorite.create(property_id:params[:id], user_id:current_user.id)
-    redirect_to "/users/user_profile"
+    redirect_to "/"
   end
 
   def list_property
@@ -104,26 +104,36 @@ class PropertiesController < ApplicationController
   end
 
   def index
-    @p = Property.order('created_at DESC')
+    if params[:mapsearch].present?
+      @p = Property.near(params[:mapsearch])
+    else
+      @p = Property.all.group(:address).limit(5)
+    end
   end
 
   def newest
-    @p = Property.order('created_at DESC').limit(5).all
-    redirect_to '/properties'
+    @p = Property.group(:address).order('created_at DESC').limit(5).all
   end
 
   def most_popular
-    @p = Property.select("properties.id, count(favorites.id) AS fav_count").
-        joins(:favorites).group("properties.id").order("fav_count DESC").limit(5)
-    redirect_to '/properties'
+    @p = Property.joins(:favorites).group(:property_id).select('properties.*, COUNT(*) AS favorite_count').order('favorite_count DESC').limit(5)
   end
 
   def low_to_high
-    @p = Property.where(status:"For Rent").order("price").limit(5)
-    redirect_to '/properties'
+    @p = Property.where(status:"For Rent").group(:address).order("price").limit(5)
   end
 
-  def search
+  def search mapsearch
+    @search = Geocoder.search(mapsearch).first
+    if @search == nil
+      @search = request.location
+      @search = Geocoder.search(@search.ip).first
+      @test = Geocoder.search('216.80.4.142').first
+      @lat = @listing.data['lat']
+      @lng = @listing.data['lng']
+      @lat_test = @test.data['latitude']
+      @lng_test = @test.data['longitude']
+    end
   end
 
   def contact_seller
@@ -164,6 +174,9 @@ class PropertiesController < ApplicationController
     # render json: @arr
   end
 
+  def some_partial_thing
+    render partial: 'my_partial'
+  end
 
   private
     def property_params

@@ -20,7 +20,7 @@
     Status: <b><%=@status%></b><br><br>
   <h3>Pricing and Description:</h3>
     Description: <b><%=@description%></b><br><br>
-    Asking Price: <b>$<%=@price%></b><br><br>
+    Asking Price: <b><%=number_to_currency(@p.price)%></b><br><br>
     Property Tax: <b>$<%= "%.02f" % @property_tax%> (<%=@tax%>%)</b><br><br>
     <hr>
   <h3>Lister's Contact Information:</h3>
