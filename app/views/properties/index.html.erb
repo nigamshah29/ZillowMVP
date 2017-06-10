@@ -3,7 +3,30 @@
 <script>
   function initMap() {
 
-    var current_location = new google.maps.LatLng(41.901695, -87.7094092);
+    //GEOLOCATION
+    // if (navigator.geolocation) {
+    //       navigator.geolocation.getCurrentPosition(function(position) {
+    //         var pos = {
+    //           lat: position.coords.latitude,
+    //           lng: position.coords.longitude
+    //         };
+    //         infoWindow.setPosition(pos);
+    //         infoWindow.setContent('Your current location');
+    //         infoWindow.open(map);
+    //         map.setCenter(pos);
+    //       }, function() {
+    //         handleLocationError(true, infoWindow, map.getCenter());
+    //       });
+    //     } else {
+    //       // Browser doesn't support Geolocation
+    //       handleLocationError(false, infoWindow, map.getCenter());
+    //     }
+
+
+      var lat = <%= @lat %>;
+      var lng = <%= @lng %>;
+
+    var current_location = new google.maps.LatLng(lat, lng);
 
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 11,
@@ -31,36 +54,34 @@
     // });
     //
 
-    $.getJSON('/properties/properties_json', function (results) {
+    var getUrlParameter = function getUrlParameter(sParam) {
+      var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+          sURLVariables = sPageURL.split('&'),
+          sParameterName,
+          i;
+
+      for (i = 0; i < sURLVariables.length; i++) {
+          sParameterName = sURLVariables[i].split('=');
+
+          if (sParameterName[0] === sParam) {
+              return sParameterName[1] === undefined ? true : sParameterName[1];
+          }
+      }
+    };
+
+
+    var search = getUrlParameter('mapsearch');
+    $.getJSON('/properties_json?mapsearch=' + search, function (results) {
+      console.log(results)
       for (var i = 0; i < results.length; i++) {
-        console.log(results[i]);
+        console.log(i, 'result', results[i]);
         var latLng = new google.maps.LatLng(results[i].latitude,results[i].longitude);
         var marker = new google.maps.Marker({
           position: latLng,
           map: map
         });
       }
-    })
-
-    //GEOLOCATION
-    if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Your current location');
-            infoWindow.open(map);
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
+    });
 
   }
 
@@ -98,7 +119,7 @@ ueries" style="display:inline-block; vertical-align:top;">
   <h2>Real Estate</h2>
   <nav>
       <ul id="myTab" class="nav nav-pills">
-        <li class="<%= 'active' if params[:controller] == 'properties' && params[:action] == 'index' %>"><a href="/properties">Home</a></li>
+        <li class="<%= 'active' if params[:controller] == 'properties' && params[:action] == 'index' %>"><a href="/properties">Search Results</a></li>
         <!-- <li class="active"><a href="/properties" data-toggle="tab">Home</a></li> -->
 
         <li class="<%= 'active' if params[:controller] == 'properties' && params[:action] == 'most_popular' %>"><a href="/properties/most_popular">Most Popular</a></li>

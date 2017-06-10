@@ -105,10 +105,25 @@ class PropertiesController < ApplicationController
 
   def index
     if params[:mapsearch].present?
-      @p = Property.near(params[:mapsearch])
+      @listing = Geocoder.search(params[:mapsearch]).first
+      PSaved.create(query: params[:mapsearch], user_id: current_user.id)
+      @lat = @listing.data['geometry']['location']['lat']
+      @lng = @listing.data['geometry']['location']['lng']
+      @p = Property.near(params[:mapsearch], 20).group('address')
     else
+      @lat = 41.901695
+      @lng = -87.7094092
       @p = Property.all.group(:address).limit(5)
     end
+  end
+
+  def properties_json
+    if params[:mapsearch].present?
+      @p = Property.near(params[:mapsearch], 20)
+    else
+      @p = Property.all
+    end
+    render json: @p.to_json
   end
 
   def newest
@@ -123,18 +138,18 @@ class PropertiesController < ApplicationController
     @p = Property.where(status:"For Rent").group(:address).order("price").limit(5)
   end
 
-  def search mapsearch
-    @search = Geocoder.search(mapsearch).first
-    if @search == nil
-      @search = request.location
-      @search = Geocoder.search(@search.ip).first
-      @test = Geocoder.search('216.80.4.142').first
-      @lat = @listing.data['lat']
-      @lng = @listing.data['lng']
-      @lat_test = @test.data['latitude']
-      @lng_test = @test.data['longitude']
-    end
-  end
+  # def search mapsearch
+  #   @search = Geocoder.search(mapsearch).first
+  #   if @search == nil
+  #     @search = request.location
+  #     @search = Geocoder.search(@search.ip).first
+  #     @test = Geocoder.search('216.80.4.142').first
+  #     @lat = @listing.data['lat']
+  #     @lng = @listing.data['lng']
+  #     @lat_test = @test.data['latitude']
+  #     @lng_test = @test.data['longitude']
+  #   end
+  # end
 
   def contact_seller
   end
@@ -163,20 +178,20 @@ class PropertiesController < ApplicationController
     render "make_zestimate"
   end
 
-  def properties_json
-    @p = Property.all
-    @arr = []
-    @p.each do |p|
-      @arr << p.address
-    end
-    render json: @p.to_json
+  # def properties_json
+  #   @p = Property.all
+  #   @arr = []
+  #   @p.each do |p|
+  #     @arr << p.address
+  #   end
+  #   render json: @p.to_json
+  #
+  #   # render json: @arr
+  # end
 
-    # render json: @arr
-  end
-
-  def some_partial_thing
-    render partial: 'my_partial'
-  end
+  # def some_partial_thing
+  #   render partial: 'my_partial'
+  # end
 
   private
     def property_params

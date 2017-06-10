@@ -84,7 +84,7 @@ Rails.application.routes.draw do
 
   post 'properties/:id/favorite' => 'properties#favorite'
 
-  get 'properties/properties_json' => 'properties#properties_json'
+  get '/properties_json' => 'properties#properties_json'
 
   #Agent Routes
   get 'agents/contact_agent' => 'agents#contact_agent'

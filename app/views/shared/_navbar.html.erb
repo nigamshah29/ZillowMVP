@@ -25,8 +25,8 @@
         </li>
       </ul>
       <div class="col-sm-3 col-md-3">
-        <form action="/p_saveds/search" method="post" class="navbar-form" role="search">
-          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <form action="/properties" method="GET" class="navbar-form" role="search">
+          <!-- <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"> -->
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Enter city, barrio, or zip" name="mapsearch">
             <div class="input-group-btn">

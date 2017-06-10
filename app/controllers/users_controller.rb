@@ -44,10 +44,12 @@ class UsersController < ApplicationController
   end
 
   def user_profile
-    @prop_images = PropImage.all.group('property_id')
+    #users favorited properties
     @favs = Favorite.where(user_id: current_user.id).select('property_id').pluck(:property_id)
     @fav_properties = Property.where(id: @favs)
+    #users listed properties & images
     @listed_properties = Property.where(contact_email: current_user.email)
+    @prop_images = PropImage.all.group('property_id')
   end
 
   def my_listing
