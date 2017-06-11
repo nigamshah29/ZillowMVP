@@ -11,56 +11,21 @@
     Zip: <input type="text" name="zipcode"><br>
     <hr>
   <h4>Property Details:</h4>
-    Type:
-    <select name="building_type">
-      <option value="House">House</option>
-      <option value="Condo">Condo</option>
-      <option value="Townhouse">Townhouse</option>
-      <option value="Apartment">Apartment</option>
-      <option value="Mobile Home">Mobile Home</option>
-    </select>
+    Type: <%= select_tag "building_type", options_for_select(building_types) %>
     <br><br>
     Year Built: <input type="date" name="year_built"><br><br>
-    Number of Beds:
-    <select name="no_bed">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-    </select>
-    Number of Baths:
-    <select name="no_bath">
-      <option value="1">1</option>
-      <option value="1.5">1.5</option>
-      <option value="2">2</option>
-      <option value="2.5">2.5</option>
-      <option value="3">3</option>
-      <option value="3.5">3.5</option>
-      <option value="4">4</option>
-    </select>
+    Number of Beds: <%= select_tag "no_bed", options_for_select(no_beds) %>
+    Number of Baths: <%= select_tag "no_bath", options_for_select(no_baths) %>
     <br><br>
-    Garage: <input type="radio" name="garage" value="true">Yes
-            <input type="radio" name="garage" value="false">No <br><br>
-    Parking:
-    <select name="parking">
-      <option value="Garage Parking Available">Garage Parking Available</option>
-      <option value="Permit Parking Available">Permit Parking Available</option>
-      <option value="Street Parking Available">Street Parking Available</option>
-      <option value="No Parking Available">No Parking Available</option>
-    </select>
+    Garage: <input type="radio" name="garage" value="yes">Yes
+            <input type="radio" name="garage" value="no">No <br><br>
+    Parking: <%= select_tag "parking", options_for_select(parking_types) %>
     <hr>
   <h4>Pricing and Description:</h4>
     <textarea name="description" rows="8" cols="80" placeholder="Enter in a description"></textarea><br><br>
     Asking Price: <input type="integer" name="price"><br><br>
     <hr>
-    <select name="status">
-      <option value="For Rent">For Rent</option>
-      <option value="For Sale">For Sale</option>
-      <option value="Foreclosed">Foreclosed</option>
-      <option value="New Construction">New Construction</option>
-    </select>
+    Status: <%= select_tag "status", options_for_select(statuses) %>
     Your Phone Number: <input type="text" name="contact_phone">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    <input type="submit" class="btn btn-info" value="List Property">

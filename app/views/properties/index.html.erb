@@ -10,6 +10,13 @@
     //           lat: position.coords.latitude,
     //           lng: position.coords.longitude
     //         };
+    //         $.post({
+    //             url: "/test",
+    //             data: {"latitude": lat, "longitude": lng},
+    //             success: function(res){
+    //               console.log(res)
+    //             }
+    //           });
     //         infoWindow.setPosition(pos);
     //         infoWindow.setContent('Your current location');
     //         infoWindow.open(map);
@@ -39,21 +46,6 @@
 
     var infoWindow = new google.maps.InfoWindow;
 
-    // var searchBox = new google.maps.places.SearchBox(document.getElementById('map'));
-    //
-    // google.maps.event.addListener(searchBox, function(){
-    //   var places = searchBox.getPlaces();
-    //   var bounds = new google.maps.LatLngBounds();
-    //   var i, place;
-    //   for(i=0; place=places[i]; i++){
-    //     bounds.extend(place.geometry.location);
-    //     marker.setPosition(place.geometry.location);
-    //   }
-    //   map.fitBounds(bounds);
-    //   map.setZoom(15);
-    // });
-    //
-
     var getUrlParameter = function getUrlParameter(sParam) {
       var sPageURL = decodeURIComponent(window.location.search.substring(1)),
           sURLVariables = sPageURL.split('&'),
@@ -68,7 +60,6 @@
           }
       }
     };
-
 
     var search = getUrlParameter('mapsearch');
     $.getJSON('/properties_json?mapsearch=' + search, function (results) {
@@ -119,7 +110,7 @@ ueries" style="display:inline-block; vertical-align:top;">
   <h2>Real Estate</h2>
   <nav>
       <ul id="myTab" class="nav nav-pills">
-        <li class="<%= 'active' if params[:controller] == 'properties' && params[:action] == 'index' %>"><a href="/properties">Search Results</a></li>
+        <li class="<%= 'active' if params[:controller] == 'properties' && params[:action] == 'index' %>"><a href="/properties">Nearby</a></li>
         <!-- <li class="active"><a href="/properties" data-toggle="tab">Home</a></li> -->
 
         <li class="<%= 'active' if params[:controller] == 'properties' && params[:action] == 'most_popular' %>"><a href="/properties/most_popular">Most Popular</a></li>

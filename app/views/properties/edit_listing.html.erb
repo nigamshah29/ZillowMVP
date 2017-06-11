@@ -7,63 +7,30 @@
   <h3>Location:</h3>
     Address: <input type="text" name="address" value="<%=session[:address]%>"><br><br>
     City: <input type="text" name="city" value="<%=session[:city]%>">
-    State: <%= select_tag "state", options_for_select(us_states) %>
+    State: <%= select_tag "state", options_for_select(us_states, session[:state]) %>
     Zip: <input type="text" name="zipcode" value="<%=session[:zipcode]%>"><br>
     <hr>
   <h3>Property Details:</h3>
-    Type:
-    <select name="building_type">
-      <option value="House">House</option>
-      <option value="Condo">Condo</option>
-      <option value="Townhouse">Townhouse</option>
-      <option value="Apartment">Apartment</option>
-      <option value="Mobile Home">Mobile Home</option>
-    </select>
+    Type: <%= select_tag "building_type", options_for_select(building_types, session[:building_type]) %>
     <br><br>
     Year Built: <input type="date" name="year_built" value="<%=session[:year_built]%>"><br><br>
     Number of Beds:
-    <select name="no_bed">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-    </select>
-    (<%=session[:no_bed]%>)
+    <%= select_tag "no_bed", options_for_select(no_beds, session[:no_bed]) %>
     &nbsp;&nbsp;&nbsp;
     Number of Baths:
-    <select name="no_bath">
-      <option value="1">1</option>
-      <option value="1.5">1.5</option>
-      <option value="2">2</option>
-      <option value="2.5">2.5</option>
-      <option value="3">3</option>
-      <option value="3.5">3.5</option>
-      <option value="4">4</option>
-    </select>
-    (<%=session[:no_bath]%>)
+    <%= select_tag "no_bath", options_for_select(no_baths, session[:no_bath]) %>
     <br><br>
-    Garage: <input type="radio" name="garage" value="true">Yes
-            <input type="radio" name="garage" value="false">No <br><br>
-    Parking:
-    <select name="parking">
-      <option value="Garage Parking Available">Garage Parking Available</option>
-      <option value="Permit Parking Available">Permit Parking Available</option>
-      <option value="Street Parking Available">Street Parking Available</option>
-      <option value="No Parking Available">No Parking Available</option>
-    </select>
+    Garage:
+    <%= radio_button_tag 'garage', 'yes', (session[:garage] == "yes") %><label>Yes</label>
+    <%= radio_button_tag 'garage', 'no', (session[:garage] == "no") %><label>No</label>
+    <br><br>
+    Parking: <%= select_tag "parking", options_for_select(parking_types, session[:parking]) %>
     <hr>
   <h3>Pricing and Description:</h3>
-    <textarea name="description" rows="8" cols="80" placeholder="<%=session[:description]%>"></textarea><br><br>
+    <textarea name="description" rows="8" cols="80"><%=session[:description]%></textarea><br><br>
     Asking Price: <input type="integer" name="price" value="<%=session[:price]%>"><br><br>
     <hr>
-    <select name="status">
-      <option value="For Rent">For Rent</option>
-      <option value="For Sale">For Sale</option>
-      <option value="Foreclosed">Foreclosed</option>
-      <option value="New Construction">New Construction</option>
-    </select>
+    Status: <%= select_tag "status", options_for_select(statuses, session[:status]) %>
     Your Phone Number: <input type="text" name="contact_phone" value="<%=session[:contact_phone]%>">
     <br><br><br>
     <input type="submit" name="listing" value="Update Property">

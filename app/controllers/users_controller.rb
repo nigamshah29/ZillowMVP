@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     @favs = Favorite.where(user_id: current_user.id).select('property_id').pluck(:property_id)
     @fav_properties = Property.where(id: @favs)
     #users listed properties & images
-    @listed_properties = Property.where(contact_email: current_user.email)
+    @listed_properties = Property.where(contact_email: current_user.email).group('address')
     @prop_images = PropImage.all.group('property_id')
   end
 

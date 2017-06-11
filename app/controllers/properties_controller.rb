@@ -117,6 +117,15 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def test
+    session[:lat] = params[:latitude]
+    session[:lng] = params[:longitude]
+    puts session[:lat]
+    puts session[:lng]
+    @latlng = [session[:lat], session[:lng]]
+    return render json: @latlng
+  end
+
   def properties_json
     if params[:mapsearch].present?
       @p = Property.near(params[:mapsearch], 20)
