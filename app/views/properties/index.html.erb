@@ -74,6 +74,18 @@
       }
     });
 
+    $.getJSON('/properties_json', function (results) {
+      console.log(results)
+      for (var i = 0; i < results.length; i++) {
+        console.log(i, 'result', results[i]);
+        var latLng = new google.maps.LatLng(results[i].latitude,results[i].longitude);
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map
+        });
+      }
+    });
+
   }
 
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {

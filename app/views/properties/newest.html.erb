@@ -3,7 +3,37 @@
 <script>
   function initMap() {
 
-    var current_location = new google.maps.LatLng(41.901695, -87.7094092);
+    //GEOLOCATION
+    // if (navigator.geolocation) {
+    //       navigator.geolocation.getCurrentPosition(function(position) {
+    //         var pos = {
+    //           lat: position.coords.latitude,
+    //           lng: position.coords.longitude
+    //         };
+    //         $.post({
+    //             url: "/test",
+    //             data: {"latitude": lat, "longitude": lng},
+    //             success: function(res){
+    //               console.log(res)
+    //             }
+    //           });
+    //         infoWindow.setPosition(pos);
+    //         infoWindow.setContent('Your current location');
+    //         infoWindow.open(map);
+    //         map.setCenter(pos);
+    //       }, function() {
+    //         handleLocationError(true, infoWindow, map.getCenter());
+    //       });
+    //     } else {
+    //       // Browser doesn't support Geolocation
+    //       handleLocationError(false, infoWindow, map.getCenter());
+    //     }
+
+
+      var lat = <%= @lat %>;
+      var lng = <%= @lng %>;
+
+    var current_location = new google.maps.LatLng(lat, lng);
 
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 11,
@@ -16,54 +46,47 @@
 
     var infoWindow = new google.maps.InfoWindow;
 
-    var searchBox = new google.maps.places.SearchBox(document.getElementById('map'));
+    var getUrlParameter = function getUrlParameter(sParam) {
+      var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+          sURLVariables = sPageURL.split('&'),
+          sParameterName,
+          i;
 
-    google.maps.event.addListener(searchBox, function(){
-      var places = searchBox.getPlaces();
-      var bounds = new google.maps.LatLngBounds();
-      var i, place;
-      for(i=0; place=places[i]; i++){
-        bounds.extend(place.geometry.location);
-        marker.setPosition(place.geometry.location);
+      for (i = 0; i < sURLVariables.length; i++) {
+          sParameterName = sURLVariables[i].split('=');
+
+          if (sParameterName[0] === sParam) {
+              return sParameterName[1] === undefined ? true : sParameterName[1];
+          }
       }
-      map.fitBounds(bounds);
-      map.setZoom(15);
-    });
+    };
 
-
-    $.getJSON('/properties/properties_json', function (results) {
+    var search = getUrlParameter('mapsearch');
+    $.getJSON('/properties_json?mapsearch=' + search, function (results) {
+      console.log(results)
       for (var i = 0; i < results.length; i++) {
-        console.log(results[i]);
+        console.log(i, 'result', results[i]);
         var latLng = new google.maps.LatLng(results[i].latitude,results[i].longitude);
         var marker = new google.maps.Marker({
           position: latLng,
           map: map
         });
       }
-    })
+    });
 
-    //GEOLOCATION
-    if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Your current location');
-            infoWindow.open(map);
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
+    $.getJSON('/properties_json', function (results) {
+      console.log(results)
+      for (var i = 0; i < results.length; i++) {
+        console.log(i, 'result', results[i]);
+        var latLng = new google.maps.LatLng(results[i].latitude,results[i].longitude);
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map
+        });
+      }
+    });
 
   }
-
 
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
@@ -78,19 +101,41 @@
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-sQVuX8b2ECGCusIws9k7Jta3g2-n6zg&callback=initMap&libraries=places">
 </script>
+<script type="text/javascript">
+// $(document).ready(function () {
+//
+//
+//   $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+//     var target = $(e.target).attr("href") // activated tab
+//     alert(target);
+//   })
+//  $.get('/some_partial_thing', function (partial_html) {
+//    add it to your html using jquery ...
+// })
+//
+// });
 
+</script>
 <div class="q
 ueries" style="display:inline-block; vertical-align:top;">
   <div id="map"></div>
   <h2>Real Estate</h2>
   <nav>
-      <ul class="nav nav-pills">
-        <li class="<%= 'active' if params[:controller] == 'properties' && params[:action] == 'index' %>"><a href="/properties">Home</a></li>
-        <li class="<%= 'active' if params[:controller] == 'properties' && params[:action] == 'most_popular' %>"><a href="#/properties/most_popular">Most Popular</a></li>
+      <ul id="myTab" class="nav nav-pills">
+        <li class="<%= 'active' if params[:controller] == 'properties' && params[:action] == 'index' %>"><a href="/properties">Nearby</a></li>
+        <!-- <li class="active"><a href="/properties" data-toggle="tab">Home</a></li> -->
+
+        <li class="<%= 'active' if params[:controller] == 'properties' && params[:action] == 'most_popular' %>"><a href="/properties/most_popular">Most Popular</a></li>
+        <!-- <li class=""><a href="/properties/most_popular" data-toggle="tab">Most Popular</a></li> -->
+
         <li class="<%= 'active' if params[:controller] == 'properties' && params[:action] == 'newest' %>"><a href="/properties/newest">Most Recent</a></li>
+        <!-- <li class=""><a href="/properties/newest" data-toggle="tab">Most Recent</a></li> -->
+
         <li class="<%= 'active' if params[:controller] == 'properties' && params[:action] == 'low_to_high' %>"><a href="/properties/low_to_high">Rent (low to high)</a></li>
+        <!-- <li class=""><a href="/properties/low_to_high" data-toggle="tab">Rent (low to high)</a></li> -->
       </ul>
   </nav>
+
   <div class="listings" style="background-color:grey;">
     <table class="table table-striped" style="width:600px;">
       <tr>
