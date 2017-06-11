@@ -16,7 +16,7 @@
     <div class="carousel-inner" role="listbox">
       <div style="width:600px;" class="item active">
 
-        
+
         <%@prop_images.each do |image|%>
           <%=image_tag image.image%>
         <%end %>
@@ -46,7 +46,7 @@
       <tbody>
           <tr>
             <th>Price:</th>
-              <td><%=number_to_currency(@p.price)%></td>
+              <td><%= number_to_currency(@p.price) %></td>
           </tr>
           <tr>
             <th>Taxes:</th>

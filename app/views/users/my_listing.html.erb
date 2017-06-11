@@ -24,7 +24,7 @@
       <i>none</i>
     <% end %>
   <br><br>
-  Asking Price: <b><%=number_to_currency(@p.price)%></b><br><br>
+  Asking Price: <b><%=number_to_currency(@property.price)%></b><br><br>
   Property Tax: <b>$<%= "%.02f" % (@property.tax * @property.price)%> (<%=@property.tax%>%)</b><br><br>
   <hr>
 <h3>Lister's Contact Information:</h3>
