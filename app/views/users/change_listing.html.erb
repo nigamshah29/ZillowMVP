@@ -1,72 +1,39 @@
-<%= render partial: 'shared/navbar' %>
+<!-- <%= render partial: 'shared/navbar' %>
 
 <h1>Edit your Listing</h1>
-<hr>
-<form action="/users/<%=@p.id%>/update_listing" method="post">
-  <input type="hidden" name="_method" value="patch">
+
+<form action="/properties/hold_data" method="post">
   <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
   <h3>Location:</h3>
-    Address: <input type="text" name="property[address]" value="<%=@p.address%>"><br><br>
-    State: <%= select_tag “property[state]“, options_for_select(us_states) %>
-    Zip: <input type="text" name="property[zipcode]" value="<%=@p.zipcode%>"><br>
+    Address: <input type="text" name="address" value="<%= @p.address %>"><br><br>
+    City: <input type="text" name="city" value="<%= @p.city %>">
+    State: <%= select_tag "state", options_for_select(us_states, session[:state]) %>
+    Zip: <input type="text" name="zipcode" value="<%=session[:zipcode]%>"><br>
     <hr>
   <h3>Property Details:</h3>
-    Type:
-    <select name="property[building_type]">
-      <option value="House">House</option>
-      <option value="Condo">Condo</option>
-      <option value="Townhouse">Townhouse</option>
-      <option value="Apartment">Apartment</option>
-      <option value="Mobile Home">Mobile Home</option>
-    </select>
+    Type: <%= select_tag "building_type", options_for_select(building_types, session[:building_type]) %>
     <br><br>
-    Year Built: <input type="date" name="property[year_built]" value="<%=@p.year_built%>"><br><br>
+    Year Built: <input type="date" name="year_built" value="<%=session[:year_built]%>"><br><br>
     Number of Beds:
-    <select name="property[no_bed]">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-    </select>
-    (<%=@p.no_bed%>)
+    <%= select_tag "no_bed", options_for_select(no_beds, session[:no_bed]) %>
     &nbsp;&nbsp;&nbsp;
     Number of Baths:
-    <select name="property[no_bath]">
-      <option value="1">1</option>
-      <option value="1.5">1.5</option>
-      <option value="2">2</option>
-      <option value="2.5">2.5</option>
-      <option value="3">3</option>
-      <option value="3.5">3.5</option>
-      <option value="4">4</option>
-    </select>
-    (<%=@p.no_bath%>)
+    <%= select_tag "no_bath", options_for_select(no_baths, session[:no_bath]) %>
     <br><br>
-    Garage: <input type="radio" name="property[garage]" value="true">Yes
-            <input type="radio" name="property[garage]" value="false">No <br><br>
-    Parking:
-    <select name="property[parking]">
-      <option value="Garage Parking Available">Garage Parking Available</option>
-      <option value="Permit Parking Available">Permit Parking Available</option>
-      <option value="Street Parking Available">Street Parking Available</option>
-      <option value="No Parking Available">No Parking Available</option>
-    </select>
+    Garage:
+    <%= radio_button_tag 'garage', 'yes', (session[:garage] == "yes") %><label>Yes</label>
+    <%= radio_button_tag 'garage', 'no', (session[:garage] == "no") %><label>No</label>
+    <br><br>
+    Parking: <%= select_tag "parking", options_for_select(parking_types, session[:parking]) %>
     <hr>
   <h3>Pricing and Description:</h3>
-    <textarea name="property[description]" rows="8" cols="80" placeholder="<%=@p.description%>"></textarea><br><br>
-    Asking Price: <input type="integer" name="property[price]" value="<%=@p.price%>"><br><br>
+    <textarea name="description" rows="8" cols="80"><%=session[:description]%></textarea><br><br>
+    Asking Price: <input type="integer" name="price" value="<%=session[:price]%>"><br><br>
     <hr>
-    <select name="property[status]">
-      <option value="For Rent">For Rent</option>
-      <option value="For Sale">For Sale</option>
-      <option value="Foreclosed">Foreclosed</option>
-      <option value="New Construction">New Construction</option>
-    </select>
-    Your Phone Number: <input type="text" name="property[contact_phone]" value="<%=@p.contact_phone%>">
+    Status: <%= select_tag "status", options_for_select(statuses, session[:status]) %>
+    Your Phone Number: <input type="text" name="contact_phone" value="<%=session[:contact_phone]%>">
     <br><br><br>
-    <input type="submit" value="Update Property">
+    <input type="submit" name="listing" value="Update Property">
 </form>
 <br><br>
-<a href="/users/<%=@p.id%>/my_listing">Back to Listing</a>
+<a href="/users/<%=@p.id%>/my_listing">Back to Listing</a> -->

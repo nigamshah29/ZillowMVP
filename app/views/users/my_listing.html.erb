@@ -1,6 +1,7 @@
 <%= render partial: 'shared/navbar' %>
 
-<h1>My Listing #<%=@property.id%></h1>
+<h1>My Listing</h1>
+<h4>Property #: BnzX0000z<%=@property.id%></h4>
 <hr>
 <h3>Location:</h3>
   Address: <b><%=@property.address%>, <%=@property.state%> <%=@property.zipcode%></b><br><br>
@@ -32,8 +33,8 @@
   Email: <b><%=@property.contact_email%></b><br><br>
   Phone: <b><%=@property.contact_phone%></b>
   <hr>
-  <a href="/users/<%=@property.id%>/change_listing">Edit Listing</a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <!-- <a href="/users/<%=@property.id%>/change_listing">Edit Listing</a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
   <a href="/prop_images/<%=@property.id%>/new">Add an Image</a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="/properties/<%=@property.id%>/zestimate">Get Zestimate</a>
